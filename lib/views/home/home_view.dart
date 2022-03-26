@@ -1,8 +1,10 @@
-import 'package:alderautomationsdotcom/views/widgets/call_to_action/call_to_action.dart';
-import 'package:alderautomationsdotcom/views/widgets/course_details/course_details.dart';
+import 'package:alderautomationsdotcom/views/widgets/centerted_view/centerted_view.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:flutter/material.dart';
 import '../widgets/NavigationBar/navigation_bar.dart';
-import '../widgets/centerted_view/centerted_view.dart';
+import 'package:alderautomationsdotcom/globals.dart';
+import 'home_content_mobile.dart';
+import 'home_content_desktop.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -10,20 +12,15 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: brandWhite,
       body: CenteredView(
         child: Column(
           children: <Widget>[
             const NaviBar(),
             Expanded(
-                child: Row(
-              children: const [
-                CourseDetails(),
-                Expanded(
-                    child: Center(
-                  child: CallToAction(title: 'View Projects'),
-                ))
-              ],
+                child: ScreenTypeLayout(
+              mobile: const HomeContentMobile(),
+              desktop: const HomeContentDesktop(),
             ))
           ],
         ),
