@@ -1,6 +1,6 @@
-import 'package:alderautomationsdotcom/views/projects/projects_view.dart';
 import 'package:flutter/material.dart';
 import 'package:alderautomationsdotcom/globals.dart';
+import '../../contact/contact_view.dart';
 
 class CallToAction extends StatelessWidget {
   final String title;
@@ -15,7 +15,7 @@ class CallToAction extends StatelessWidget {
       child: TextButton(
         onPressed: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const ProjectsView()));
+              MaterialPageRoute(builder: (context) => const ContactView()));
         },
         child: Text(
           title,

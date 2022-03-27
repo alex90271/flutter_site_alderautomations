@@ -12,7 +12,7 @@ class HomeContentDesktop extends StatelessWidget {
       children: const [
         CourseDetails(),
         Expanded(
-          child: Center(child: CallToAction(title: 'View Projects')),
+          child: Center(child: CallToAction(title: 'Book a consultation')),
         )
       ],
     );

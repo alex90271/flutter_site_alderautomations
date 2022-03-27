@@ -24,18 +24,29 @@ class NavigationBarTabletDesktop extends StatelessWidget {
                   page: ContactView(),
                 ),
                 SizedBox(
-                  width: 60,
+                  width: 20,
                 ),
                 NavBarPage(
                   'Solutions',
                   page: ProjectsView(),
                 ),
                 SizedBox(
-                  width: 60,
+                  width: 20,
                 ),
                 NavBarLink(
                   'Github',
                   url: 'https://github.com/alex90271',
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                NavBarLink('Testimonials', url: '/'),
+                SizedBox(
+                  width: 20,
+                ),
+                NavBarLink('LinkedIn', url: '/'),
+                SizedBox(
+                  width: 20,
                 ),
               ],
             )
