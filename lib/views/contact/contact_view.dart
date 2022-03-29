@@ -1,7 +1,7 @@
+import 'package:alderautomationsdotcom/views/widgets/calendar/calendar.dart';
 import 'package:alderautomationsdotcom/views/widgets/centerted_view/centerted_view.dart';
 import 'package:alderautomationsdotcom/views/widgets/return_button/return_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import '../widgets/NavigationBar/navigation_bar.dart';
 
 const squareapp =
@@ -18,8 +18,8 @@ class ContactView extends StatelessWidget {
           children: [
             const NaviBar(),
             const Text('contact us'),
+            CalendarWidget(),
             const ReturnButton(),
-            Html(data: squareapp)
           ],
         ),
       ),

@@ -31,7 +31,8 @@ dependencies:
     sdk: flutter
   responsive_builder: ^0.4.0-nullsaftey.1
   url_launcher: ^6.0.20
-  flutter_html: ^2.2.1
+  table_calendar: ^3.0.5
+  contactus: ^1.2.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -66,6 +67,7 @@ flutter:
     - assets/AA_icon.png
     - assets/AA_main.png
     - assets/AA_blue_a.png
+    - assets/AA_blk_ico.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -82,10 +84,6 @@ flutter:
     - family: Lovelo
       fonts:
         - asset: assets/fonts/Lovelo/Lovelo-Black.ttf
-        - asset: assets/fonts/Lovelo/Lovelo-LineBold.ttf
-          weight: 700
-        - asset: assets/fonts/Lovelo/Lovelo-LineLight.ttf
-          weight: 300
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

@@ -16,7 +16,18 @@ class ProjectsView extends StatelessWidget {
         child: Column(
           children: const <Widget>[
             NaviBar(),
-            ProjectsInfoBox(title: 'Project One', desc: 'Project One Desc'),
+            ProjectsInfoBox(
+                title: 'Custom Wordpress Websites',
+                desc:
+                    'Build your own wordpress website, with easy access to an admin panel for custom conent editing'),
+            ProjectsInfoBox(
+                title: 'Custom Flutter Applications',
+                desc:
+                    'Custom flutter Applications \nCompatible with both iOS, Android, Web, and more'),
+            ProjectsInfoBox(
+                title: 'Custom Python Scripts',
+                desc:
+                    'Create custom python scripts to help organize or automate your data'),
             ReturnButton()
           ],
         ),

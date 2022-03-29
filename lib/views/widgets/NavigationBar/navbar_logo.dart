@@ -1,3 +1,4 @@
+import 'package:alderautomationsdotcom/globals.dart';
 import 'package:flutter/material.dart';
 
 class NavBarLogo extends StatelessWidget {
@@ -5,10 +6,6 @@ class NavBarLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 180,
-      width: 360,
-      child: Image.asset('assets/AA_main.png'),
-    );
+    return Row(children: [Image.asset(mainLogo), const Text(mainTitle)]);
   }
 }

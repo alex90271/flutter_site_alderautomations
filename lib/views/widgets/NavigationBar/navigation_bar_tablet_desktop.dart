@@ -1,6 +1,7 @@
 import 'package:alderautomationsdotcom/views/contact/contact_view.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../testimonial_view/testimonial_view.dart';
 import 'navbar_logo.dart';
 import 'package:alderautomationsdotcom/globals.dart';
 import 'package:alderautomationsdotcom/views/projects/projects_view.dart';
@@ -23,31 +24,17 @@ class NavigationBarTabletDesktop extends StatelessWidget {
                   'Contact',
                   page: ContactView(),
                 ),
-                SizedBox(
-                  width: 20,
-                ),
                 NavBarPage(
                   'Solutions',
                   page: ProjectsView(),
                 ),
-                SizedBox(
-                  width: 20,
-                ),
+                NavBarPage('Testimonials', page: TestimonialView()),
                 NavBarLink(
                   'Github',
                   url: 'https://github.com/alex90271',
                 ),
-                SizedBox(
-                  width: 20,
-                ),
-                NavBarLink('Testimonials', url: '/'),
-                SizedBox(
-                  width: 20,
-                ),
-                NavBarLink('LinkedIn', url: '/'),
-                SizedBox(
-                  width: 20,
-                ),
+                NavBarLink('LinkedIn',
+                    url: 'https://www.linkedin.com/in/alex-alder/'),
               ],
             )
           ]),
@@ -66,13 +53,20 @@ class NavBarPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(brandBlue)),
-      onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => page));
-      },
-      child: Text(title, style: const TextStyle(fontSize: 18)),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: SizedBox(
+        width: 150,
+        child: ElevatedButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(brandBlue)),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => page));
+          },
+          child: Text(title, style: const TextStyle(fontSize: 14)),
+        ),
+      ),
     );
   }
 }
@@ -88,11 +82,17 @@ class NavBarLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(brandBlue)),
-      onPressed: _launchURL,
-      child: Text(title, style: const TextStyle(fontSize: 18)),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: SizedBox(
+        width: 150,
+        child: ElevatedButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(brandBlue)),
+          onPressed: _launchURL,
+          child: Text(title, style: const TextStyle(fontSize: 14)),
+        ),
+      ),
     );
   }
 

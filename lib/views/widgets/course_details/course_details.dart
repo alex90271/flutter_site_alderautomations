@@ -16,8 +16,8 @@ class CourseDetails extends StatelessWidget {
 
       double titleSize =
           sizingInformation.deviceScreenType == DeviceScreenType.mobile
-              ? 50
-              : 80;
+              ? 120
+              : 160;
       double descriptionSize =
           sizingInformation.deviceScreenType == DeviceScreenType.mobile
               ? 16
@@ -28,15 +28,6 @@ class CourseDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              mainTitle,
-              style: TextStyle(
-                fontWeight: FontWeight.w800,
-                height: 0.9,
-                fontSize: titleSize,
-              ),
-              textAlign: textAlignment,
-            ),
             const SizedBox(
               height: 30,
             ),
