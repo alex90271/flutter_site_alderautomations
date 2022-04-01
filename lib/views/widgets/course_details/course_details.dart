@@ -3,7 +3,8 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:alderautomationsdotcom/globals.dart';
 
 class CourseDetails extends StatelessWidget {
-  const CourseDetails({Key? key}) : super(key: key);
+  final mainDesc;
+  const CourseDetails({Key? key, required this.mainDesc}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

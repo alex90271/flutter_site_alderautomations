@@ -11,15 +11,12 @@ class TestimonialView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: brandWhite,
-      body: CenteredView(
+    return SizedBox(
+      child: CenteredView(
           child: Column(
         children: const [
-          NaviBar(),
           TestimonialBox(
               title: 'Testimonial One', desc: 'Testimonial Content One'),
-          ReturnButton()
         ],
       )),
     );

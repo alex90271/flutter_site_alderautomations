@@ -9,20 +9,30 @@ import 'home_content_desktop.dart';
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
 
+  final calltoAction = ('Book a consultation');
+  final courseDetails =
+      ('Optimize workflows, organize data, \nor redesign your online presence \nContact now for a brief consultation');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: brandWhite,
-      body: CenteredView(
-        child: Column(
-          children: <Widget>[
-            const NaviBar(),
-            Expanded(
-                child: ScreenTypeLayout(
-              mobile: const HomeContentMobile(),
-              desktop: const HomeContentDesktop(),
-            ))
-          ],
+      body: SingleChildScrollView(
+        child: CenteredView(
+          child: Column(
+            children: <Widget>[
+              const NaviBar(),
+              ScreenTypeLayout(
+                mobile: HomeContentMobile(
+                  callToAction: calltoAction,
+                  courseDetails: courseDetails,
+                ),
+                desktop: HomeContentDesktop(
+                  callToAction: calltoAction,
+                  courseDetails: courseDetails,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

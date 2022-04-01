@@ -7,6 +7,4 @@ const brandBlack = Color.fromRGBO(58, 58, 59, 1);
 const brandWhite = Color.fromRGBO(255, 255, 255, 1);
 
 const mainTitle = 'Alder Automations';
-const mainDesc =
-    'Optimize workflows, organize data, \nor redesign your online presence \nContact now for a brief consultation';
 const mainLogo = 'assets/AA_blk_ico.png';
