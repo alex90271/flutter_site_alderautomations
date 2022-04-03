@@ -1,3 +1,4 @@
+import 'package:alderautomationsdotcom/views/home/home_content_mobile.dart';
 import 'package:alderautomationsdotcom/views/home/home_view.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Alder Automations',
         theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Lovelo'),
-        home: const HomeView());
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const HomeView(),
+          '/test_page': (context) => const HomeContentMobile(
+              callToAction: 'test', courseDetails: 'test')
+        });
   }
 }
