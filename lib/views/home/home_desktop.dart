@@ -35,11 +35,12 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: ScrollablePositionedList.builder(
+        child: Scaffold(
+      body: ScrollablePositionedList.builder(
           itemCount: 6,
           itemBuilder: (context, index) {
             return SizedBox(child: homepageOrder[index]);
           }),
-    );
+    ));
   }
 }

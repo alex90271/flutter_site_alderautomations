@@ -1,6 +1,5 @@
 import 'package:alderautomationsdotcom/views/home/home_desktop.dart';
 import 'package:alderautomationsdotcom/views/home/home_mobile.dart';
-import 'package:alderautomationsdotcom/views/home/home_view.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
