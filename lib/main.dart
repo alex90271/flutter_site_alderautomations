@@ -1,4 +1,5 @@
-import 'package:alderautomationsdotcom/views/home/home_content_mobile.dart';
+import 'package:alderautomationsdotcom/views/home/home_desktop.dart';
+import 'package:alderautomationsdotcom/views/home/home_mobile.dart';
 import 'package:alderautomationsdotcom/views/home/home_view.dart';
 import 'package:flutter/material.dart';
 
@@ -14,9 +15,11 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Lovelo'),
         initialRoute: '/',
         routes: {
-          '/': (context) => const HomeView(),
-          '/test_page': (context) => const HomeContentMobile(
-              callToAction: 'test', courseDetails: 'test')
+          '/': (context) => HomeContentDesktop(),
+          '/mobile': (context) => const HomeContentMobile(
+                callToAction: 'Mobile Test',
+                courseDetails: 'Mobile Test',
+              )
         });
   }
 }
