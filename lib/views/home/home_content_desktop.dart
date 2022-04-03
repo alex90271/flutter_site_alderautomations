@@ -1,10 +1,12 @@
-import 'package:alderautomationsdotcom/views/contact/contact_view.dart';
-import 'package:alderautomationsdotcom/views/testimonial_view/testimonial_view.dart';
+import 'package:alderautomationsdotcom/widgets/call_to_action/call_to_action.dart';
+import 'package:alderautomationsdotcom/widgets/centerted_view/centerted_view.dart';
+import 'package:alderautomationsdotcom/widgets/course_details/course_details.dart';
+import 'package:alderautomationsdotcom/widgets/footer/footer.dart';
 import 'package:flutter/material.dart';
-import '../projects/projects_view.dart';
-import '../widgets/call_to_action/call_to_action.dart';
-import '../widgets/course_details/course_details.dart';
-import '../widgets/projects_box/projects_box.dart';
+import 'content/about/about.dart';
+import 'content/contact/contact.dart';
+import 'content/projects/projects.dart';
+import 'content/testimonial/testimonial.dart';
 
 class HomeContentDesktop extends StatelessWidget {
   final callToAction;
@@ -15,18 +17,27 @@ class HomeContentDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Column(
       children: [
-        Row(
-          children: [
-            CourseDetails(mainDesc: courseDetails),
-            Center(child: CallToAction(title: callToAction)),
-          ],
+        CenteredView(
+          child: Row(
+            children: [
+              CourseDetails(mainDesc: courseDetails),
+              Center(
+                  child: CallToAction(
+                title_one: callToAction,
+                title_two: 'About',
+              )),
+            ],
+          ),
         ),
-        const SizedBox(height: 250),
+        SizedBox(height: size.height * 0.35),
         const ProjectsView(),
         const TestimonialView(),
-        const ContactView()
+        const AboutView(),
+        const ContactView(),
+        const Footer()
       ],
     );
   }

@@ -1,9 +1,6 @@
 import 'package:alderautomationsdotcom/globals.dart';
-import 'package:alderautomationsdotcom/views/widgets/calendar/calendar.dart';
-import 'package:alderautomationsdotcom/views/widgets/centerted_view/centerted_view.dart';
-import 'package:alderautomationsdotcom/views/widgets/return_button/return_button.dart';
+import 'package:alderautomationsdotcom/widgets/centerted_view/centerted_view.dart';
 import 'package:flutter/material.dart';
-import '../widgets/NavigationBar/navigation_bar.dart';
 
 const squareapp =
     " <!-- Start Square Appointments Embed Code --><script src='https://squareup.com/appointments/buyer/widget/be8krbfi80p3h4/GEHYJQKV3K0K5.js'></script><!-- End Square Appointments Embed Code --> ";
@@ -13,57 +10,79 @@ class ContactView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text('Contact Us'),
-          ),
-          Column(
-            children: [
-              Row(
-                children: const [
-                  TextContactForm(
-                    label: 'First Name',
-                    initial: '',
-                    helper: '',
-                  ),
-                  TextContactForm(
-                    label: 'Last Name',
-                    initial: '',
-                    helper: '',
-                  ),
-                  TextContactForm(
-                    label: 'Buisness Name',
-                    initial: '',
-                    helper: '',
-                  )
-                ],
+    var size = MediaQuery.of(context).size;
+    return Container(
+      height: size.height * 0.85,
+      color: brandBlue,
+      child: CenteredView(
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                'Contact Us',
+                style: TextStyle(color: brandWhite),
               ),
-              Row(
-                children: const [
-                  TextContactForm(
-                    label: 'Phone Number',
-                    initial: '',
-                    helper: '',
-                    length: 10,
-                  ),
-                  TextContactForm(
-                    label: 'Email',
-                    initial: '',
-                    helper: '',
-                  ),
-                ],
-              ),
-              const DateFeild(
-                label: 'Date',
-                initial: '',
-                helper: '',
-              )
-            ],
-          ),
-        ],
+            ),
+            Column(
+              children: [
+                Row(
+                  children: const [
+                    TextContactForm(
+                      label: 'First Name',
+                      initial: '',
+                      helper: '',
+                    ),
+                    TextContactForm(
+                      label: 'Last Name',
+                      initial: '',
+                      helper: '',
+                    ),
+                    TextContactForm(
+                      label: 'Buisness Name',
+                      initial: '',
+                      helper: '',
+                    )
+                  ],
+                ),
+                Row(
+                  children: const [
+                    TextContactForm(
+                      label: 'Phone Number',
+                      initial: '',
+                      helper: '',
+                      length: 10,
+                    ),
+                    TextContactForm(
+                      label: 'Email',
+                      initial: '',
+                      helper: '',
+                    ),
+                    DateFeild(
+                      label: 'Date',
+                      initial: '',
+                      helper: '',
+                    )
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(brandBlack)),
+                      onPressed: () {
+                        //TODO Implement submit form
+                      },
+                      child: const Text(
+                        'Submit',
+                        style: TextStyle(color: brandWhite),
+                      )),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -102,17 +121,16 @@ class _DateFeildState extends State<DateFeild> {
               decoration: InputDecoration(
                 labelText: widget.label,
                 labelStyle: const TextStyle(
-                  color: brandBlack,
+                  color: brandWhite,
                 ),
                 helperText: widget.helper,
                 enabledBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(color: brandBlue),
+                  borderSide: BorderSide(color: brandWhite),
                 ),
               ),
             ),
           ),
         ),
-        const CalendarWidget()
       ],
     );
   }
@@ -156,11 +174,11 @@ class _TextContactFormState extends State<TextContactForm> {
               decoration: InputDecoration(
                 labelText: widget.label,
                 labelStyle: const TextStyle(
-                  color: brandBlack,
+                  color: brandWhite,
                 ),
                 helperText: widget.helper,
                 enabledBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(color: brandBlue),
+                  borderSide: BorderSide(color: brandWhite),
                 ),
               ),
             ),

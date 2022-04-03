@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:alderautomationsdotcom/globals.dart';
 
 class CourseDetails extends StatelessWidget {
   final mainDesc;

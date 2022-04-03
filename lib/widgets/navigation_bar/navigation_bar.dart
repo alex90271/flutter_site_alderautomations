@@ -1,3 +1,4 @@
+import 'package:alderautomationsdotcom/widgets/centerted_view/centerted_view.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'navigation_bar_mobile.dart';
@@ -8,9 +9,11 @@ class NaviBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenTypeLayout(
-      mobile: const NavigationBarMobile(),
-      tablet: const NavigationBarTabletDesktop(),
+    return CenteredView(
+      child: ScreenTypeLayout(
+        mobile: const NavigationBarMobile(),
+        tablet: const NavigationBarTabletDesktop(),
+      ),
     );
   }
 }
