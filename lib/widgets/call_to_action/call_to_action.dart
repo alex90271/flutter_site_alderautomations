@@ -5,11 +5,13 @@ import 'package:alderautomationsdotcom/globals.dart';
 class CallToAction extends StatelessWidget {
   final String title_one;
   final String title_two;
-  const CallToAction({
-    Key? key,
-    required this.title_one,
-    required this.title_two,
-  }) : super(key: key);
+  PageController pgcntrl;
+  CallToAction(
+      {Key? key,
+      required this.title_one,
+      required this.title_two,
+      required this.pgcntrl})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +40,10 @@ class CallToActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Container(
-      height: 60,
-      width: 400,
+      height: size.height / 15,
+      width: size.width / 5,
       alignment: Alignment.center,
       child: TextButton(
         onPressed: () {

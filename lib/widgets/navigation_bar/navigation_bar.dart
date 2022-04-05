@@ -5,15 +5,20 @@ import 'navigation_bar_mobile.dart';
 import 'navigation_bar_tablet_desktop.dart';
 
 class NaviBar extends StatelessWidget {
-  const NaviBar({Key? key}) : super(key: key);
+  PageController pgctrl;
+  NaviBar({Key? key, required this.pgctrl}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return CenteredView(
-      child: ScreenTypeLayout(
-        mobile: const NavigationBarMobile(),
-        tablet: const NavigationBarTabletDesktop(),
+    return ScreenTypeLayout(
+      mobile: const Padding(
+        padding: EdgeInsets.fromLTRB(16, 8, 8, 8),
+        child: NavigationBarMobile(),
       ),
+      tablet: CenteredView(
+          child: NavigationBarTabletDesktop(
+        pgctrl: pgctrl,
+      )),
     );
   }
 }

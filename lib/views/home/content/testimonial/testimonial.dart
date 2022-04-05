@@ -1,3 +1,5 @@
+import 'package:flutter/gestures.dart';
+
 import '/widgets/testimonial_box/testimonial_box.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -25,13 +27,9 @@ class TestimonialView extends StatelessWidget {
     return SizedBox(
       height: size.height * 0.85,
       child: CenteredView(
-        child: CarouselSlider(
-          items: testimonialList,
-          options: CarouselOptions(
-              enableInfiniteScroll: true,
-              initialPage: 2,
-              autoPlay: true,
-              viewportFraction: 0.4),
+        child: ListView(
+          children: testimonialList,
+          scrollDirection: Axis.horizontal,
         ),
       ),
     );

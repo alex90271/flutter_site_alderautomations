@@ -4,6 +4,8 @@ import 'package:alderautomationsdotcom/widgets/projects_box/projects_box.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:responsive_builder/responsive_builder.dart';
+
 class ProjectsView extends StatefulWidget {
   const ProjectsView({Key? key}) : super(key: key);
 
@@ -37,6 +39,20 @@ class _ProjectsViewState extends State<ProjectsView>
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    const content = <Widget>[
+      ProjectsInfoBox(
+          title: 'Custom Wordpress Websites',
+          desc:
+              'Build your own wordpress website, with easy access to an admin panel for custom conent editing'),
+      ProjectsInfoBox(
+          title: 'Custom Flutter Applications',
+          desc:
+              'Custom flutter Applications \nCompatible with both iOS, Android, Web, and more'),
+      ProjectsInfoBox(
+          title: 'Custom Python Scripts',
+          desc:
+              'Create custom python scripts to help organize or automate your data'),
+    ];
     return AnimatedBuilder(
       animation: _controller,
       builder: (BuildContext context, Widget? child) {
@@ -46,25 +62,16 @@ class _ProjectsViewState extends State<ProjectsView>
               decoration: const BoxDecoration(
                 color: brandBlue,
               ),
-              height: size.height * 0.85,
+              height: size.height * 0.80,
               child: CenteredView(
                 child: Stack(children: [
                   SizedBox(
-                    child: Column(
-                      children: const <Widget>[
-                        ProjectsInfoBox(
-                            title: 'Custom Wordpress Websites',
-                            desc:
-                                'Build your own wordpress website, with easy access to an admin panel for custom conent editing'),
-                        ProjectsInfoBox(
-                            title: 'Custom Flutter Applications',
-                            desc:
-                                'Custom flutter Applications \nCompatible with both iOS, Android, Web, and more'),
-                        ProjectsInfoBox(
-                            title: 'Custom Python Scripts',
-                            desc:
-                                'Create custom python scripts to help organize or automate your data'),
-                      ],
+                    child: ScreenTypeLayout(
+                      mobile: ListView(
+                        children: content,
+                        shrinkWrap: true,
+                      ),
+                      desktop: Column(children: content),
                     ),
                   ),
                 ]),
@@ -82,11 +89,11 @@ class DrawClip extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     Path path = Path();
-    path.lineTo(0, size.height * 0.95);
+    path.lineTo(0, size.height * 0.85);
     double xCenter =
         size.width * 0.5 + (size.width * 0.6 + 1) * math.sin(move * slice);
-    double yCenter = size.height * 0.95 + 69 * math.cos(move * slice);
-    path.quadraticBezierTo(xCenter, yCenter, size.width, size.height * 0.95);
+    double yCenter = size.height * 0.85 + 69 * math.cos(move * slice);
+    path.quadraticBezierTo(xCenter, yCenter, size.width, size.height * 0.85);
 
     path.lineTo(size.width, 0);
     return path;

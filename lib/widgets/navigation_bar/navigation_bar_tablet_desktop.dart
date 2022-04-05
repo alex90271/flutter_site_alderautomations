@@ -1,41 +1,47 @@
+import 'package:alderautomationsdotcom/views/home/home_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'navbar_logo.dart';
 import 'package:alderautomationsdotcom/globals.dart';
 
 class NavigationBarTabletDesktop extends StatelessWidget {
-  const NavigationBarTabletDesktop({Key? key}) : super(key: key);
+  PageController pgctrl;
+  NavigationBarTabletDesktop({Key? key, required this.pgctrl})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return SizedBox(
-      height: size.height * 0.075,
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            const NavBarLogo(),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: const <Widget>[
-                NavBarPage(
-                  'Contact',
-                  page: '',
-                ),
-                NavBarPage(
-                  'Solutions',
-                  page: '',
-                ),
-                NavBarPage('Testimonials', page: ''),
-                NavBarLink(
-                  'Github',
-                  url: 'https://github.com/alex90271',
-                ),
-                NavBarLink('LinkedIn',
-                    url: 'https://www.linkedin.com/in/alex-alder/'),
-              ],
-            )
-          ]),
+    return Align(
+      alignment: FractionalOffset.topCenter,
+      child: SizedBox(
+        height: size.height * 0.055,
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              const NavBarLogo(),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  NavBarPage(
+                    'Contact',
+                    page: 4,
+                    pgcntrl: pgctrl,
+                  ),
+                  NavBarPage('Solutions', page: 1, pgcntrl: pgctrl),
+                  NavBarPage('Testimonials', page: 2, pgcntrl: pgctrl),
+                  NavBarPage('About', page: 3, pgcntrl: pgctrl),
+                  const NavBarLink(
+                    'Github',
+                    url: 'https://github.com/alex90271',
+                  ),
+                  const NavBarLink('LinkedIn',
+                      url: 'https://www.linkedin.com/in/alex-alder/'),
+                ],
+              )
+            ]),
+      ),
     );
   }
 }
@@ -43,11 +49,9 @@ class NavigationBarTabletDesktop extends StatelessWidget {
 class NavBarPage extends StatelessWidget {
   final String title;
   final page;
-  const NavBarPage(
-    this.title, {
-    Key? key,
-    required this.page,
-  }) : super(key: key);
+  PageController pgcntrl;
+  NavBarPage(this.title, {Key? key, required this.page, required this.pgcntrl})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -60,10 +64,9 @@ class NavBarPage extends StatelessWidget {
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(brandBlue)),
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => page));
+            pgcntrl.jumpToPage(page);
           },
-          child: Text(title, style: const TextStyle(fontSize: 14)),
+          child: Text(title, style: TextStyle(fontSize: size.height / 90)),
         ),
       ),
     );
@@ -90,7 +93,7 @@ class NavBarLink extends StatelessWidget {
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(brandBlue)),
           onPressed: _launchURL,
-          child: Text(title, style: const TextStyle(fontSize: 14)),
+          child: Text(title, style: TextStyle(fontSize: size.height / 90)),
         ),
       ),
     );

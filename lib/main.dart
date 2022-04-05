@@ -1,5 +1,4 @@
-import 'package:alderautomationsdotcom/views/home/home_desktop.dart';
-import 'package:alderautomationsdotcom/views/home/home_mobile.dart';
+import 'package:alderautomationsdotcom/views/home/home_view.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -15,10 +14,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => HomeContentDesktop(),
-          '/mobile': (context) => const HomeContentMobile(
-                callToAction: 'Mobile Test',
-                courseDetails: 'Mobile Test',
-              )
+          '/contact': ((context) => HomeContentDesktop())
         });
   }
 }

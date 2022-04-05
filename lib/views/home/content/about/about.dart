@@ -9,34 +9,37 @@ class AboutView extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.85,
+      height: size.height * 0.75,
       color: brandBlack,
       child: CenteredView(
-        child: Column(
-          children: [
-            const Padding(
-              padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-              child: Text(
-                'About',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: brandWhite, fontSize: 24),
+        child: Align(
+          alignment: Alignment.center,
+          child: Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                child: Text(
+                  'About',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: brandWhite, fontSize: 24),
+                ),
               ),
-            ),
-            Row(
-              children: [
-                Image.asset('AA_main.png'),
-                const SizedBox(
-                  width: 50,
-                ),
-                const Expanded(
-                  child: Text(
-                    'Hello\nmy name is Alex Alder \nI am a full stack developer I specialize in Flutter, Python, Java, and Wordpress, with familiarity with JavaScript, C++, PHP, and am constantly excited to learn more ',
-                    style: TextStyle(color: brandWhite, fontSize: 18),
+              Row(
+                children: [
+                  Image.asset('AA_main.png'),
+                  const SizedBox(
+                    width: 50,
                   ),
-                ),
-              ],
-            )
-          ],
+                  const Expanded(
+                    child: Text(
+                      'Hello\nmy name is Alex Alder \nI am a full stack developer I specialize in Flutter, Python, Java, and Wordpress, with familiarity with JavaScript, C++, PHP, and am constantly excited to learn more ',
+                      style: TextStyle(color: brandWhite, fontSize: 18),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

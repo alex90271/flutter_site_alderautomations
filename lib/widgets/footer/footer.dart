@@ -7,25 +7,27 @@ class Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        color: brandBlack,
-        child: CenteredView(
-            child: SizedBox(
-          child: Row(
-            children: const [
-              Icon(
-                Icons.copyright_outlined,
-                color: brandWhite,
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                child: Text(
+    return Align(
+      alignment: FractionalOffset.bottomCenter,
+      child: Container(
+          alignment: Alignment.centerRight,
+          height: 75,
+          color: brandBlack,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
+            child: Row(
+              children: const [
+                Icon(
+                  Icons.copyright_outlined,
+                  color: brandWhite,
+                ),
+                Text(
                   'Copyright Alder Automations 2022',
                   style: TextStyle(color: brandWhite),
                 ),
-              ),
-            ],
-          ),
-        )));
+              ],
+            ),
+          )),
+    );
   }
 }
