@@ -26,8 +26,7 @@ class HomeContentDesktop extends StatefulWidget {
 class _HomeContentDesktopState extends State<HomeContentDesktop> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Scaffold(
+    return Scaffold(
       body: Stack(
         children: [
           PageView(
@@ -53,6 +52,6 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
           const Footer(),
         ],
       ),
-    ));
+    );
   }
 }
