@@ -19,11 +19,19 @@ class CallToAction extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.all(2.0),
-          child: CallToActionButton(title: title_one),
+          child: CallToActionButton(
+            title: title_one,
+            page: 5,
+            pgcntrl: pgcntrl,
+          ),
         ),
         Padding(
           padding: const EdgeInsets.all(2.0),
-          child: CallToActionButton(title: title_two),
+          child: CallToActionButton(
+            title: title_two,
+            page: 5,
+            pgcntrl: pgcntrl,
+          ),
         )
       ],
     );
@@ -31,9 +39,14 @@ class CallToAction extends StatelessWidget {
 }
 
 class CallToActionButton extends StatelessWidget {
-  const CallToActionButton({
+  PageController pgcntrl;
+  var page;
+
+  CallToActionButton({
     Key? key,
     required this.title,
+    required this.pgcntrl,
+    required this.page,
   }) : super(key: key);
 
   final String title;
@@ -47,8 +60,7 @@ class CallToActionButton extends StatelessWidget {
       alignment: Alignment.center,
       child: TextButton(
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const ContactView()));
+          pgcntrl.jumpToPage(page);
         },
         child: Text(
           title,
