@@ -1,6 +1,7 @@
 import 'package:alderautomationsdotcom/globals.dart';
 import 'package:alderautomationsdotcom/widgets/centerted_view/centerted_view.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 const squareapp =
     " <!-- Start Square Appointments Embed Code --><script src='https://squareup.com/appointments/buyer/widget/be8krbfi80p3h4/GEHYJQKV3K0K5.js'></script><!-- End Square Appointments Embed Code --> ";
@@ -24,63 +25,114 @@ class ContactView extends StatelessWidget {
                 style: TextStyle(color: brandWhite),
               ),
             ),
-            Column(
-              children: [
-                Row(
-                  children: const [
-                    TextContactForm(
-                      label: 'First Name',
-                      initial: '',
-                      helper: '',
-                    ),
-                    TextContactForm(
-                      label: 'Last Name',
-                      initial: '',
-                      helper: '',
-                    ),
-                    TextContactForm(
-                      label: 'Buisness Name',
-                      initial: '',
-                      helper: '',
-                    )
-                  ],
-                ),
-                Row(
-                  children: const [
-                    TextContactForm(
-                      label: 'Phone Number',
-                      initial: '',
-                      helper: '',
-                      length: 10,
-                    ),
-                    TextContactForm(
-                      label: 'Email',
-                      initial: '',
-                      helper: '',
-                    ),
-                    DateFeild(
-                      label: 'Date',
-                      initial: '',
-                      helper: '',
-                    )
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(brandBlack)),
-                      onPressed: () {
-                        //TODO Implement submit form
-                      },
-                      child: const Text(
-                        'Submit',
-                        style: TextStyle(color: brandWhite),
-                      )),
-                )
-              ],
-            ),
+            ScreenTypeLayout(
+              desktop: Column(
+                children: [
+                  Row(
+                    children: const [
+                      TextContactForm(
+                        label: 'First Name',
+                        initial: '',
+                        helper: '',
+                      ),
+                      TextContactForm(
+                        label: 'Last Name',
+                        initial: '',
+                        helper: '',
+                      ),
+                      TextContactForm(
+                        label: 'Buisness Name',
+                        initial: '',
+                        helper: '',
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: const [
+                      TextContactForm(
+                        label: 'Phone Number',
+                        initial: '',
+                        helper: '',
+                        length: 10,
+                      ),
+                      TextContactForm(
+                        label: 'Email',
+                        initial: '',
+                        helper: '',
+                      ),
+                      DateFeild(
+                        label: 'Date',
+                        initial: '',
+                        helper: '',
+                      )
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all<Color>(brandBlack)),
+                        onPressed: () {
+                          //TODO Implement submit form
+                        },
+                        child: const Text(
+                          'Submit',
+                          style: TextStyle(color: brandWhite),
+                        )),
+                  )
+                ],
+              ),
+              mobile: Column(
+                children: [
+                  const TextContactForm(
+                    label: 'First Name',
+                    initial: '',
+                    helper: '',
+                  ),
+                  const TextContactForm(
+                    label: 'Last Name',
+                    initial: '',
+                    helper: '',
+                  ),
+                  const TextContactForm(
+                    label: 'Buisness Name',
+                    initial: '',
+                    helper: '',
+                  ),
+                  const TextContactForm(
+                    label: 'Phone Number',
+                    initial: '',
+                    helper: '',
+                    length: 10,
+                  ),
+                  const TextContactForm(
+                    label: 'Email',
+                    initial: '',
+                    helper: '',
+                  ),
+                  const DateFeild(
+                    label: 'Date',
+                    initial: '',
+                    helper: '',
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all<Color>(brandBlack)),
+                        onPressed: () {
+                          //TODO Implement submit form
+                        },
+                        child: const Text(
+                          'Submit',
+                          style: TextStyle(color: brandWhite),
+                        )),
+                  )
+                ],
+              ),
+            )
           ],
         ),
       ),
