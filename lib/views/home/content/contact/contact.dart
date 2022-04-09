@@ -2,6 +2,7 @@ import 'package:alderautomationsdotcom/globals.dart';
 import 'package:alderautomationsdotcom/widgets/contact_form/contact_form.dart';
 import 'package:alderautomationsdotcom/widgets/centerted_view/centerted_view.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 const squareapp =
     " <!-- Start Square Appointments Embed Code --><script src='https://squareup.com/appointments/buyer/widget/be8krbfi80p3h4/GEHYJQKV3K0K5.js'></script><!-- End Square Appointments Embed Code --> ";
