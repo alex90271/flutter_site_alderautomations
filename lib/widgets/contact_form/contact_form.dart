@@ -16,7 +16,7 @@ invalidSnack(context) =>
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         backgroundColor: Colors.red,
         content: Text(
-          'There has been and error. Please try again later\nOr you can email alex.alder1@gmail.com',
+          'The submit function has not yet been implemented\nto contact, please email alex.alder1@gmail.com',
           style: TextStyle(color: brandBlack),
         )));
 
@@ -67,26 +67,26 @@ class _TextContactFormState extends State<TextContactForm> {
             helper: 'Project Type',
           ),
           ElevatedButton(
-              //submit button
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(brandBlack)),
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  log('valid inputs');
-                  invalidSnack(context);
-                  //validSnack(context);
-                  //TODO submit data
-                  _formKey.currentState!.reset();
-                } else {
-                  log('invalid inputs');
-                  invalidSnack(context);
-                }
-              },
-              child: const Text(
-                'Submit',
-                style: TextStyle(color: brandWhite),
-              )),
+            //submit button
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(brandBlack)),
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                log('valid inputs');
+                invalidSnack(context);
+                //validSnack(context);
+                //TODO submit data
+                _formKey.currentState!.reset();
+              } else {
+                log('invalid inputs');
+                invalidSnack(context);
+              }
+            },
+            child: const Text(
+              'Submit',
+              style: TextStyle(color: brandWhite),
+            ),
+          ),
         ],
       ),
     );
