@@ -1,6 +1,7 @@
 import 'package:alderautomationsdotcom/globals.dart';
 import 'package:alderautomationsdotcom/widgets/contact_form/contact_form.dart';
 import 'package:alderautomationsdotcom/widgets/centerted_view/centerted_view.dart';
+import 'package:alderautomationsdotcom/widgets/footer/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -16,19 +17,23 @@ class ContactView extends StatelessWidget {
     return Container(
       height: size.height * 0.85,
       color: brandBlue,
-      child: CenteredView(
-        child: Column(
-          children: const [
-            Padding(
-              padding: EdgeInsets.fromLTRB(8, 15, 8, 8),
-              child: Text(
-                'Contact Us',
-                style: TextStyle(color: brandWhite),
-              ),
+      child: Column(
+        children: [
+          CenteredView(
+            child: Column(
+              children: const [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(8, 15, 8, 8),
+                  child: Text(
+                    'Contact Us',
+                    style: TextStyle(color: brandWhite),
+                  ),
+                ),
+                TextContactForm(),
+              ],
             ),
-            TextContactForm()
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

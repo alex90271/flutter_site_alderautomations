@@ -63,7 +63,9 @@ class TestimonialCard extends StatelessWidget {
                   IconButton(
                       onPressed: onPressed,
                       icon: const Icon(Icons.insert_comment)),
-                  Text(desc),
+                  Text(
+                    desc,
+                  ),
                 ],
               ),
               padding: const EdgeInsets.all(8.0),

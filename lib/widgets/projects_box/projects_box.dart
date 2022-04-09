@@ -37,7 +37,7 @@ class ProjectsInfoBox extends StatelessWidget {
                   IconButton(
                       onPressed: onPressed,
                       icon: const Icon(Icons.code_rounded)),
-                  Text(desc),
+                  Expanded(child: Text(desc)),
                 ],
               ),
               padding: const EdgeInsets.all(8.0),
