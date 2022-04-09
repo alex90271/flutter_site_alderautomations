@@ -67,9 +67,11 @@ class _ProjectsViewState extends State<ProjectsView>
                 child: Stack(children: [
                   SizedBox(
                     child: ScreenTypeLayout(
-                      mobile: ListView(
-                        children: content,
-                        shrinkWrap: true,
+                      mobile: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 125),
+                        child: ListView(
+                          children: content,
+                        ),
                       ),
                       desktop: Column(children: content),
                     ),
