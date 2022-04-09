@@ -21,20 +21,24 @@ class CallToAction extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(2.0),
-          child: CallToActionButton(
-            title: title_one,
-            page: page_one,
-            pgcntrl: pgcntrl,
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: CallToActionButton(
+              title: title_one,
+              page: page_one,
+              pgcntrl: pgcntrl,
+            ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(2.0),
-          child: CallToActionButton(
-            title: title_two,
-            page: page_two,
-            pgcntrl: pgcntrl,
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: CallToActionButton(
+              title: title_two,
+              page: page_two,
+              pgcntrl: pgcntrl,
+            ),
           ),
         )
       ],

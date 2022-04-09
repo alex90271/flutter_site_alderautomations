@@ -43,7 +43,6 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
                 const TestimonialView(),
                 const AboutView(),
                 const ContactView(),
-                const Footer()
               ],
               controller: widget.controller,
               scrollDirection: Axis.vertical,
@@ -55,6 +54,7 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
                   log('visiting page ' + widget.page.toString());
                 });
               }),
+          const Footer()
         ],
       ),
     );
