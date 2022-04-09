@@ -32,6 +32,8 @@ class CallToActionView extends StatelessWidget {
                 title_one: title_one,
                 title_two: title_two,
                 pgcntrl: pgctrl,
+                page_one: 5,
+                page_two: 4,
               )),
             ]),
             desktop: Column(
@@ -44,6 +46,8 @@ class CallToActionView extends StatelessWidget {
                     title_one: title_one,
                     title_two: title_two,
                     pgcntrl: pgctrl,
+                    page_one: 5,
+                    page_two: 4,
                   )),
                 ]),
               ],
