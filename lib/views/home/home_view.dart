@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:alderautomationsdotcom/widgets/footer/footer.dart';
 import 'package:flutter/material.dart';
 import 'content/about/about.dart';
@@ -15,6 +14,7 @@ class HomeContentDesktop extends StatefulWidget {
 
   int page = 0;
   final controller = PageController(initialPage: 0, keepPage: true);
+
   void updatePage(newPage) {
     controller.jumpTo(newPage);
   }
@@ -25,9 +25,13 @@ class HomeContentDesktop extends StatefulWidget {
 
 class _HomeContentDesktopState extends State<HomeContentDesktop> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Scaffold(
+    return Scaffold(
       body: Stack(
         children: [
           PageView(
@@ -53,6 +57,6 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
           const Footer(),
         ],
       ),
-    ));
+    );
   }
 }

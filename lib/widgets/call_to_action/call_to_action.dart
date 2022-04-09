@@ -42,8 +42,8 @@ class CallToActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
-      height: size.height / 15,
-      width: size.width / 5,
+      height: size.height / 8,
+      width: size.width / 6,
       alignment: Alignment.center,
       child: TextButton(
         onPressed: () {

@@ -32,9 +32,8 @@ dependencies:
   responsive_builder: ^0.4.0-nullsaftey.1
   url_launcher: ^6.0.20
   table_calendar: ^3.0.5
-  contactus: ^1.2.0
-  carousel_slider: ^4.0.0
-  scrollable_positioned_list: ^0.2.3
+  flutter_bloc: ^8.0.0
+  validators: ^3.0.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -70,6 +69,7 @@ flutter:
     - assets/AA_main.png
     - assets/AA_blue_a.png
     - assets/AA_blk_ico.png
+    - assets/headshot.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

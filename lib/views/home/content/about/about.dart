@@ -26,7 +26,11 @@ class AboutView extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Image.asset('AA_main.png'),
+                  ClipOval(
+                      child: Image.asset(
+                    'headshot.jpeg',
+                    height: size.height / 2,
+                  )),
                   const SizedBox(
                     width: 50,
                   ),

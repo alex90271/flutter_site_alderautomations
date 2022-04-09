@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 
 import '/widgets/testimonial_box/testimonial_box.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import '/widgets/centerted_view/centerted_view.dart';
 
 final List<Widget> testimonialList = [

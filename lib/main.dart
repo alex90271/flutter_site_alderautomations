@@ -14,7 +14,6 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => HomeContentDesktop(),
-          '/contact': ((context) => HomeContentDesktop())
         });
   }
 }
