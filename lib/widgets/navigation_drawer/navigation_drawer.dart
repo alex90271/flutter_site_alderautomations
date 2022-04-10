@@ -16,22 +16,22 @@ class NavigationDrawer extends StatelessWidget {
         children: <Widget>[
           const NavDrawerHeader(),
           NavDrawerPage(
-            'Contact',
-            page: 3,
-            pgcntrl: pgcntrl,
-          ),
-          NavDrawerPage(
             'Solutions',
-            page: 4,
+            page: 1,
             pgcntrl: pgcntrl,
           ),
           NavDrawerPage(
             'Testimonials',
-            page: 4,
+            page: 2,
             pgcntrl: pgcntrl,
           ),
           NavDrawerPage(
             'About',
+            page: 3,
+            pgcntrl: pgcntrl,
+          ),
+          NavDrawerPage(
+            'Contact',
             page: 4,
             pgcntrl: pgcntrl,
           ),

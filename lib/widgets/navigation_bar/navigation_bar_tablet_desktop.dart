@@ -21,14 +21,14 @@ class NavigationBarTabletDesktop extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
+                  NavBarPage('Solutions', page: 1, pgcntrl: pgctrl),
+                  NavBarPage('Testimonials', page: 2, pgcntrl: pgctrl),
+                  NavBarPage('About', page: 3, pgcntrl: pgctrl),
                   NavBarPage(
                     'Contact',
                     page: 4,
                     pgcntrl: pgctrl,
                   ),
-                  NavBarPage('Solutions', page: 1, pgcntrl: pgctrl),
-                  NavBarPage('Testimonials', page: 2, pgcntrl: pgctrl),
-                  NavBarPage('About', page: 3, pgcntrl: pgctrl),
                   const NavBarLink(
                     'Github',
                     url: 'https://github.com/alex90271',

@@ -33,37 +33,6 @@ class NavBarPage extends StatelessWidget {
   }
 }
 
-class NavDrawerPage extends StatelessWidget {
-  final String title;
-  final int page;
-  PageController pgcntrl;
-  NavDrawerPage(
-    this.title, {
-    Key? key,
-    required this.page,
-    required this.pgcntrl,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        width: size.height * 0.15,
-        child: TextButton(
-          style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(brandBlue)),
-          onPressed: () {
-            pgcntrl.jumpToPage(page);
-          },
-          child: Text(title, style: TextStyle(fontSize: size.height / 90)),
-        ),
-      ),
-    );
-  }
-}
-
 class NavBarLink extends StatelessWidget {
   final String title;
   final String url;

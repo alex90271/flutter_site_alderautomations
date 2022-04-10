@@ -13,15 +13,8 @@ class NavDrawerHeader extends StatelessWidget {
       alignment: Alignment.center,
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: const <Widget>[
-          Text(
-            'ALDER AUTOMATIONS',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w800,
-              color: Colors.white,
-            ),
-          ),
+        children: <Widget>[
+          SizedBox(height: 125, child: Image.asset('AA_main.png')),
         ],
       ),
     );
@@ -47,6 +40,7 @@ class NavDrawerPage extends StatelessWidget {
       child: TextButton(
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(brandBlue),
+            foregroundColor: MaterialStateProperty.all<Color>(brandWhite),
             minimumSize: MaterialStateProperty.all(const Size.fromHeight(60))),
         onPressed: () {
           pgcntrl.jumpToPage(page);
@@ -74,6 +68,7 @@ class NavDrawerLink extends StatelessWidget {
       child: TextButton(
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(brandBlue),
+            foregroundColor: MaterialStateProperty.all<Color>(brandWhite),
             minimumSize: MaterialStateProperty.all(const Size.fromHeight(60))),
         onPressed: () {
           _launchURL;

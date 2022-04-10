@@ -12,8 +12,8 @@ class MainView extends StatelessWidget {
 
   final String mainDesc =
       'Optimize workflows, organize data, \nor redesign your online presence \nContact now for a brief consultation';
-  final String title_one = 'Book a consultation';
-  final String title_two = 'About';
+  final String title_two = 'Book a consultation';
+  final String title_one = 'About';
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +32,8 @@ class MainView extends StatelessWidget {
                 title_one: title_one,
                 title_two: title_two,
                 pgcntrl: pgctrl,
-                page_one: 5,
-                page_two: 4,
+                page_one: 4,
+                page_two: 5,
               )),
             ]),
             desktop: Column(
@@ -46,8 +46,8 @@ class MainView extends StatelessWidget {
                     title_one: title_one,
                     title_two: title_two,
                     pgcntrl: pgctrl,
-                    page_one: 5,
-                    page_two: 4,
+                    page_one: 4,
+                    page_two: 5,
                   )),
                 ]),
               ],
