@@ -11,9 +11,11 @@ class NaviBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenTypeLayout(
-      mobile: const Padding(
-        padding: EdgeInsets.fromLTRB(16, 8, 8, 8),
-        child: NavigationBarMobile(),
+      mobile: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
+        child: NavigationBarMobile(
+          pgcntrl: pgctrl,
+        ),
       ),
       tablet: CenteredView(
           child: NavigationBarTabletDesktop(

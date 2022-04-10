@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:alderautomationsdotcom/widgets/footer/footer.dart';
+import 'package:alderautomationsdotcom/widgets/navigation_drawer/navigation_drawer.dart';
 import 'package:flutter/material.dart';
 import 'content/about/about.dart';
 import 'content/call_to_action/call_to_action.dart';
@@ -32,28 +33,31 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavigationDrawer(pgcntrl: widget.controller),
       body: Stack(
         children: [
-          PageView(
-              children: [
-                CallToActionView(
-                  pgctrl: widget.controller,
-                ),
-                const ProjectsView(),
-                const TestimonialView(),
-                const AboutView(),
-                const ContactView(),
-              ],
-              controller: widget.controller,
-              scrollDirection: Axis.vertical,
-              allowImplicitScrolling: true,
-              pageSnapping: false,
-              onPageChanged: (x) {
-                setState(() {
-                  widget.page = x;
-                  log('visiting page ' + widget.page.toString());
-                });
-              }),
+          Scrollbar(
+            child: PageView(
+                children: [
+                  CallToActionView(
+                    pgctrl: widget.controller,
+                  ),
+                  const ProjectsView(),
+                  const TestimonialView(),
+                  const AboutView(),
+                  const ContactView(),
+                ],
+                controller: widget.controller,
+                scrollDirection: Axis.vertical,
+                allowImplicitScrolling: true,
+                pageSnapping: false,
+                onPageChanged: (x) {
+                  setState(() {
+                    widget.page = x;
+                    log('visiting page ' + widget.page.toString());
+                  });
+                }),
+          ),
           const Footer()
         ],
       ),

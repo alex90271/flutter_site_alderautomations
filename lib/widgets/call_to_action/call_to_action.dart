@@ -21,26 +21,22 @@ class CallToAction extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Center(
-          child: Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: CallToActionButton(
-              title: title_one,
-              page: page_one,
-              pgcntrl: pgcntrl,
-            ),
+        Padding(
+          padding: const EdgeInsets.all(2.0),
+          child: CallToActionButton(
+            title: title_one,
+            page: page_one,
+            pgcntrl: pgcntrl,
           ),
         ),
-        Center(
-          child: Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: CallToActionButton(
-              title: title_two,
-              page: page_two,
-              pgcntrl: pgcntrl,
-            ),
+        Padding(
+          padding: const EdgeInsets.all(2.0),
+          child: CallToActionButton(
+            title: title_two,
+            page: page_two,
+            pgcntrl: pgcntrl,
           ),
-        )
+        ),
       ],
     );
   }
@@ -62,28 +58,32 @@ class CallToActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 350),
-      child: Container(
-        height: size.height / 10,
-        width: size.width / 2,
-        alignment: Alignment.center,
-        child: TextButton(
-          onPressed: () {
-            pgcntrl.jumpToPage(page);
-          },
-          child: Text(
-            title,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w800,
-              color: Colors.white,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 350),
+        child: Container(
+          height: size.height / 10,
+          width: size.width / 2,
+          alignment: Alignment.center,
+          child: TextButton(
+            onPressed: () {
+              pgcntrl.jumpToPage(page);
+            },
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w800,
+                color: Colors.white,
+              ),
             ),
           ),
-        ),
-        decoration: BoxDecoration(
-          color: brandBlue,
-          borderRadius: BorderRadius.circular(5),
+          decoration: BoxDecoration(
+            color: brandBlue,
+            borderRadius: BorderRadius.circular(5),
+          ),
         ),
       ),
     );

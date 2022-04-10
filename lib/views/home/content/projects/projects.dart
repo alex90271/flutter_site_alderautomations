@@ -62,15 +62,19 @@ class _ProjectsViewState extends State<ProjectsView>
               decoration: const BoxDecoration(
                 color: brandBlue,
               ),
-              height: size.height * 0.80,
+              height: size.height,
               child: CenteredView(
                 child: Stack(children: [
                   SizedBox(
                     child: ScreenTypeLayout(
                       mobile: Padding(
                         padding: const EdgeInsets.fromLTRB(0, 0, 0, 125),
-                        child: ListView(
-                          children: content,
+                        child: Scrollbar(
+                          scrollbarOrientation: ScrollbarOrientation.right,
+                          isAlwaysShown: true,
+                          child: ListView(
+                            children: content,
+                          ),
                         ),
                       ),
                       desktop: Column(children: content),
@@ -91,11 +95,11 @@ class DrawClip extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     Path path = Path();
-    path.lineTo(0, size.height * 0.85);
+    path.lineTo(0, size.height * 0.90);
     double xCenter =
         size.width * 0.5 + (size.width * 0.6 + 1) * math.sin(move * slice);
-    double yCenter = size.height * 0.85 + 69 * math.cos(move * slice);
-    path.quadraticBezierTo(xCenter, yCenter, size.width, size.height * 0.85);
+    double yCenter = size.height * 0.90 + 69 * math.cos(move * slice);
+    path.quadraticBezierTo(xCenter, yCenter, size.width, size.height * 0.90);
 
     path.lineTo(size.width, 0);
     return path;

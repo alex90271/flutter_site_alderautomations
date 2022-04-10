@@ -38,7 +38,7 @@ class TestimonialCard extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return SizedBox(
       width: 325,
-      height: size.height * 0.55,
+      height: size.height,
       child: Card(
         color: const Color.fromARGB(255, 207, 207, 207),
         child: Column(

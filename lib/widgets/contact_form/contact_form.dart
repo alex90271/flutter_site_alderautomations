@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../../globals.dart';
 import 'package:validators/validators.dart';
@@ -125,13 +125,23 @@ class FormattedTextField extends StatelessWidget {
         onChanged: (String value) {
           helper = value + " is invalid";
         },
+        textCapitalization: TextCapitalization.characters,
+        style: const TextStyle(
+          color: brandWhite,
+        ),
         decoration: InputDecoration(
           labelText: label,
-          focusColor: brandBlack,
+          counterStyle: const TextStyle(
+            color: brandWhite,
+          ),
           labelStyle: const TextStyle(
             color: brandWhite,
           ),
           helperText: helper,
+          helperStyle: const TextStyle(
+            color: brandWhite,
+          ),
+          hoverColor: brandWhite,
           enabledBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: brandWhite),
           ),
@@ -176,13 +186,27 @@ class FormattedPhoneField extends StatelessWidget {
           //log(value);
           helper = value + " is an invalid phone number";
         },
+        textCapitalization: TextCapitalization.characters,
+        style: const TextStyle(
+          color: brandWhite,
+        ),
         decoration: InputDecoration(
+          contentPadding: const EdgeInsets.fromLTRB(0, 16, 0, 12),
+          floatingLabelAlignment: FloatingLabelAlignment.center,
           labelText: label,
           focusColor: brandBlack,
+          counterStyle: const TextStyle(
+            color: brandWhite,
+          ),
           labelStyle: const TextStyle(
             color: brandWhite,
           ),
           helperText: helper,
+          helperStyle: const TextStyle(
+            color: brandWhite,
+          ),
+          fillColor: brandWhite,
+          hoverColor: brandWhite,
           enabledBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: brandWhite),
           ),
@@ -227,13 +251,27 @@ class FormattedEmailField extends StatelessWidget {
           //log(value);
           helper = value + " is an invalid email";
         },
+        textCapitalization: TextCapitalization.characters,
+        style: const TextStyle(
+          color: brandWhite,
+        ),
         decoration: InputDecoration(
+          contentPadding: const EdgeInsets.fromLTRB(0, 16, 0, 12),
+          floatingLabelAlignment: FloatingLabelAlignment.center,
           labelText: label,
           focusColor: brandBlack,
+          counterStyle: const TextStyle(
+            color: brandWhite,
+          ),
           labelStyle: const TextStyle(
             color: brandWhite,
           ),
           helperText: helper,
+          helperStyle: const TextStyle(
+            color: brandWhite,
+          ),
+          fillColor: brandWhite,
+          hoverColor: brandWhite,
           enabledBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: brandWhite),
           ),
@@ -275,13 +313,27 @@ class FormattedDateField extends StatelessWidget {
         onChanged: (String value) {
           //log(value);
         },
+        textCapitalization: TextCapitalization.characters,
+        style: const TextStyle(
+          color: brandWhite,
+        ),
         decoration: InputDecoration(
+          contentPadding: const EdgeInsets.fromLTRB(0, 16, 0, 12),
+          floatingLabelAlignment: FloatingLabelAlignment.center,
           labelText: label,
           focusColor: brandBlack,
+          counterStyle: const TextStyle(
+            color: brandWhite,
+          ),
           labelStyle: const TextStyle(
             color: brandWhite,
           ),
           helperText: helper,
+          helperStyle: const TextStyle(
+            color: brandWhite,
+          ),
+          fillColor: brandWhite,
+          hoverColor: brandWhite,
           enabledBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: brandWhite),
           ),
