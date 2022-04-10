@@ -1,11 +1,9 @@
+import 'package:alderautomationsdotcom/widgets/navigation_drawer/nav_drawer_item.dart';
 import 'package:flutter/material.dart';
 
-import 'drawer_item.dart';
-import 'navigation_drawer_header.dart';
-
 class NavigationDrawer extends StatelessWidget {
-  PageController pgcntrl;
-  NavigationDrawer({Key? key, required this.pgcntrl}) : super(key: key);
+  final PageController pgcntrl;
+  const NavigationDrawer({Key? key, required this.pgcntrl}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,15 +15,33 @@ class NavigationDrawer extends StatelessWidget {
       child: Column(
         children: <Widget>[
           const NavDrawerHeader(),
-          DrawerItem(
-            title: 'Projects',
+          NavDrawerPage(
+            'Contact',
             page: 3,
             pgcntrl: pgcntrl,
           ),
-          DrawerItem(
-            title: 'About',
+          NavDrawerPage(
+            'Solutions',
             page: 4,
             pgcntrl: pgcntrl,
+          ),
+          NavDrawerPage(
+            'Testimonials',
+            page: 4,
+            pgcntrl: pgcntrl,
+          ),
+          NavDrawerPage(
+            'About',
+            page: 4,
+            pgcntrl: pgcntrl,
+          ),
+          NavDrawerLink(
+            'Github',
+            url: 'https://github.com/alex90271',
+          ),
+          NavDrawerLink(
+            'LinkedIn',
+            url: 'https://www.linkedin.com/in/alex-alder/',
           ),
         ],
       ),

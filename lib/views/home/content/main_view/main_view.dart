@@ -6,14 +6,14 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../../widgets/navigation_bar/navigation_bar.dart';
 
-class CallToActionView extends StatelessWidget {
-  PageController pgctrl;
-  CallToActionView({Key? key, required this.pgctrl}) : super(key: key);
+class MainView extends StatelessWidget {
+  final PageController pgctrl;
+  const MainView({Key? key, required this.pgctrl}) : super(key: key);
 
-  String mainDesc =
+  final String mainDesc =
       'Optimize workflows, organize data, \nor redesign your online presence \nContact now for a brief consultation';
-  String title_one = 'Book a consultation';
-  String title_two = 'About';
+  final String title_one = 'Book a consultation';
+  final String title_two = 'About';
 
   @override
   Widget build(BuildContext context) {

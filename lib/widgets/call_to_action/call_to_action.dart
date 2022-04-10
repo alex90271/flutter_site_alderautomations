@@ -1,14 +1,13 @@
-import 'package:alderautomationsdotcom/views/home/content/contact/contact.dart';
 import 'package:flutter/material.dart';
 import 'package:alderautomationsdotcom/globals.dart';
 
 class CallToAction extends StatelessWidget {
   final String title_one;
   final String title_two;
-  PageController pgcntrl;
-  int page_one;
-  int page_two;
-  CallToAction(
+  final PageController pgcntrl;
+  final int page_one;
+  final int page_two;
+  const CallToAction(
       {Key? key,
       required this.title_one,
       required this.title_two,
@@ -43,10 +42,10 @@ class CallToAction extends StatelessWidget {
 }
 
 class CallToActionButton extends StatelessWidget {
-  PageController pgcntrl;
-  int page;
+  final PageController pgcntrl;
+  final int page;
 
-  CallToActionButton({
+  const CallToActionButton({
     Key? key,
     required this.title,
     required this.pgcntrl,

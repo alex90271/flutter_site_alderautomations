@@ -3,8 +3,8 @@ import 'nav_bar_item.dart';
 import 'package:alderautomationsdotcom/globals.dart';
 
 class NavigationBarTabletDesktop extends StatelessWidget {
-  PageController pgctrl;
-  NavigationBarTabletDesktop({Key? key, required this.pgctrl})
+  final PageController pgctrl;
+  const NavigationBarTabletDesktop({Key? key, required this.pgctrl})
       : super(key: key);
 
   @override

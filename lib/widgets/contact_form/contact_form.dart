@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:alderautomationsdotcom/widgets/footer/footer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../../globals.dart';
