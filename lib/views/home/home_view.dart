@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'package:alderautomationsdotcom/widgets/footer/footer.dart';
-import 'package:alderautomationsdotcom/widgets/navigation_drawer/navigation_drawer.dart';
+import 'package:alderautomationsdotcom/widgets/navigation/navigation_drawer/navigation_drawer.dart';
 import 'package:flutter/material.dart';
 import 'content/about/about.dart';
 import 'content/main_view/main_view.dart';
@@ -43,6 +43,11 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
                 const TestimonialView(),
                 const AboutView(),
                 const ContactView(),
+                Container(
+                  constraints: const BoxConstraints(maxHeight: 300),
+                  padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
+                  child: const Footer(),
+                ),
               ],
               controller: widget.controller,
               scrollDirection: Axis.vertical,
@@ -54,10 +59,6 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
                   log('visiting page ' + widget._page.toString());
                 });
               }),
-          Container(
-            padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
-            child: const Footer(),
-          ),
         ],
       ),
     );

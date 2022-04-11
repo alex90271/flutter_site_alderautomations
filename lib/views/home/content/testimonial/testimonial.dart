@@ -25,14 +25,11 @@ class TestimonialView extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return SizedBox(
       height: size.height,
+      width: size.width,
       child: CenteredView(
-        child: Scrollbar(
-          scrollbarOrientation: ScrollbarOrientation.bottom,
-          isAlwaysShown: true,
-          child: ListView(
-            children: testimonialList,
-            scrollDirection: Axis.horizontal,
-          ),
+        child: ListView(
+          children: testimonialList,
+          scrollDirection: Axis.horizontal,
         ),
       ),
     );

@@ -1,10 +1,9 @@
 import 'package:alderautomationsdotcom/widgets/call_to_action/call_to_action.dart';
 import 'package:alderautomationsdotcom/widgets/centerted_view/centerted_view.dart';
 import 'package:alderautomationsdotcom/widgets/course_details/course_details.dart';
+import 'package:alderautomationsdotcom/widgets/navigation/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-
-import '../../../../widgets/navigation_bar/navigation_bar.dart';
 
 class MainView extends StatelessWidget {
   final PageController pgctrl;
