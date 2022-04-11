@@ -40,18 +40,12 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
                   pgctrl: widget.controller,
                 ),
                 const ProjectsView(),
-                const TestimonialView(),
+                TestimonialView(),
                 const AboutView(),
                 const ContactView(),
-                Container(
-                  constraints: const BoxConstraints(maxHeight: 300),
-                  padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
-                  child: const Footer(),
-                ),
               ],
               controller: widget.controller,
               scrollDirection: Axis.vertical,
-              allowImplicitScrolling: true,
               pageSnapping: false,
               onPageChanged: (x) {
                 setState(() {
@@ -59,6 +53,7 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
                   log('visiting page ' + widget._page.toString());
                 });
               }),
+          Align(alignment: Alignment.bottomCenter, child: const Footer()),
         ],
       ),
     );

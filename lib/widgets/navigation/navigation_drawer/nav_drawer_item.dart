@@ -44,6 +44,7 @@ class NavDrawerPage extends StatelessWidget {
             minimumSize: MaterialStateProperty.all(const Size.fromHeight(60))),
         onPressed: () {
           pgcntrl.jumpToPage(page);
+          Navigator.pop(context);
         },
         child: Text(title, style: TextStyle(fontSize: 16)),
       ),

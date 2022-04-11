@@ -93,7 +93,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                             },
                           ),
                         )),
-                    MaterialButton(
+                    ElevatedButton(
                       child: const Text('Close'),
                       onPressed: () {
                         Navigator.pop(context);

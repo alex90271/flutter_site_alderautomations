@@ -1,6 +1,7 @@
 import 'package:alderautomationsdotcom/globals.dart';
 import 'package:alderautomationsdotcom/widgets/centerted_view/centerted_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class AboutView extends StatelessWidget {
@@ -58,7 +59,7 @@ class AboutView extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
                     ClipOval(
@@ -66,9 +67,13 @@ class AboutView extends StatelessWidget {
                       'headshot.jpeg',
                       height: 275,
                     )),
+                    const SizedBox(
+                      height: 50,
+                    ),
                     const Text(
-                      'Hello\nmy name is Alex Alder \nI am a full stack developer I specialize in Flutter, Python, Java, and Wordpress, with familiarity with JavaScript, C++, PHP, and am constantly excited to learn more ',
+                      'Hi!\n \nI\'m Alex Alder \nI am a full stack developer\n specializing in in Flutter, Python, Java, and Wordpress,\n I also have familiarity with JavaScript, C++, PHP, and am constantly learning more \n \n I am currently working on a POS integrated tip and payroll report generator',
                       style: TextStyle(color: brandWhite, fontSize: 18),
+                      textAlign: TextAlign.center,
                     ),
                   ],
                 )
