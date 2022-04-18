@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:alderautomationsdotcom/widgets/footer/footer.dart';
 import 'package:alderautomationsdotcom/widgets/navigation/navigation_drawer/navigation_drawer.dart';
 import 'package:flutter/material.dart';
+import '../../widgets/navigation/navigation.dart';
 import 'content/about/about.dart';
 import 'content/main_view/main_view.dart';
 import 'content/contact/contact.dart';
@@ -32,7 +33,7 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
       drawer: NavigationDrawer(pgcntrl: widget.controller),
       body: Stack(
         clipBehavior: Clip.none,
-        fit: StackFit.loose,
+        fit: StackFit.expand,
         children: [
           PageView(
               children: [
@@ -47,13 +48,27 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
               controller: widget.controller,
               scrollDirection: Axis.vertical,
               pageSnapping: false,
+              padEnds: false,
               onPageChanged: (x) {
                 setState(() {
                   widget._page = x;
                   log('visiting page ' + widget._page.toString());
                 });
               }),
-          Align(alignment: Alignment.bottomCenter, child: const Footer()),
+          Stack(
+            children: [
+              Align(
+                alignment: Alignment.topCenter,
+                child: NaviBar(
+                  pgctrl: widget.controller,
+                ),
+              ),
+              const Align(
+                alignment: Alignment.bottomCenter,
+                child: Footer(),
+              ),
+            ],
+          ),
         ],
       ),
     );

@@ -25,10 +25,9 @@ class NaviBar extends StatelessWidget {
           ],
         ),
       ),
-      desktop: CenteredView(
-          child: NavigationBarTabletDesktop(
+      desktop: NavigationBarTabletDesktop(
         pgctrl: pgctrl,
-      )),
+      ),
     );
   }
 }

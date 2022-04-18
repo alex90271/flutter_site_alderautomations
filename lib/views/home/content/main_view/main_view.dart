@@ -19,9 +19,6 @@ class MainView extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Column(
       children: [
-        NaviBar(
-          pgctrl: pgctrl,
-        ),
         CenteredView(
           child: ScreenTypeLayout(
             mobile: Column(children: [
