@@ -36,41 +36,44 @@ class TestimonialCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return SizedBox(
-      width: 325,
-      height: size.height,
-      child: Card(
-        color: const Color.fromARGB(255, 207, 207, 207),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Padding(
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxWidth: 600),
+      child: SizedBox(
+        width: size.width,
+        height: size.height * 0.75,
+        child: Card(
+          color: const Color.fromARGB(255, 207, 207, 207),
+          child: Column(
+            children: [
+              Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  title,
-                  textDirection: TextDirection.ltr,
-                  style: const TextStyle(
-                    fontSize: 32,
-                    color: Colors.black87,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    title,
+                    textDirection: TextDirection.ltr,
+                    style: const TextStyle(
+                      fontSize: 32,
+                      color: Colors.black87,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Container(
-              child: Row(
-                children: [
-                  IconButton(
-                      onPressed: onPressed,
-                      icon: const Icon(Icons.insert_comment)),
-                  Text(
-                    desc,
-                  ),
-                ],
+              Container(
+                child: Row(
+                  children: [
+                    IconButton(
+                        onPressed: onPressed,
+                        icon: const Icon(Icons.insert_comment)),
+                    Text(
+                      desc,
+                    ),
+                  ],
+                ),
+                padding: const EdgeInsets.all(8.0),
               ),
-              padding: const EdgeInsets.all(8.0),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

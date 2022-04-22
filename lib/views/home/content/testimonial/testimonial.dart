@@ -1,29 +1,26 @@
-import 'package:flutter/gestures.dart';
-
 import '/widgets/testimonial_box/testimonial_box.dart';
 import 'package:flutter/material.dart';
-import '/widgets/centerted_view/centerted_view.dart';
 
 class TestimonialView extends StatefulWidget {
   TestimonialView({Key? key}) : super(key: key);
 
-  final forwardIcon =
-      IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back));
-  final backIcon =
-      IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back));
-  final ScrollController _scrollController = ScrollController();
+  double scrollItem = 0;
+  final controller = PageController(initialPage: 0);
+  final int list_size = 5;
 
-  final List<Widget> _testimonialList = [
-    const TestimonialBox(
-        title: 'Testimonial One', desc: 'Testimonial Content One'),
-    const TestimonialBox(
-        title: 'Testimonial Two', desc: 'Testimonial Content Two'),
-    const TestimonialBox(
-        title: 'Testimonial Three', desc: 'Testimonial Content Three'),
-    const TestimonialBox(
-        title: 'Testimonial Four', desc: 'Testimonial Content Four'),
-    const TestimonialBox(
-        title: 'Testimonial Five', desc: 'Testimonial Content Five'),
+  final List _testimonialListTitles = [
+    'Title one',
+    'Title two',
+    'Title three',
+    'Title Four',
+    'Title Five'
+  ];
+  final List _testimonialListContent = [
+    'Content one',
+    'Content two',
+    'Content three',
+    'Content Four',
+    'Content Five'
   ];
 
   @override
@@ -32,18 +29,22 @@ class TestimonialView extends StatefulWidget {
 
 class _TestimonialViewState extends State<TestimonialView> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    return SizedBox(
-      height: size.height,
-      width: size.width,
-      child: CenteredView(
-        child: ListView(
-          controller: widget._scrollController,
-          children: widget._testimonialList,
+    return Center(
+      child: ListView.builder(
+          controller: widget.controller,
+          itemCount: widget.list_size,
           scrollDirection: Axis.horizontal,
-        ),
-      ),
+          itemBuilder: (context, index) {
+            return TestimonialBox(
+                title: widget._testimonialListTitles[index],
+                desc: widget._testimonialListContent[index]);
+          }),
     );
   }
 }
