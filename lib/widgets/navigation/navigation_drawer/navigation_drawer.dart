@@ -45,7 +45,6 @@ class NavigationDrawer extends StatelessWidget {
             'LinkedIn',
             url: 'https://www.linkedin.com/in/alex-alder/',
           ),
-          SizedBox(height: 275),
           Align(
             alignment: Alignment.bottomCenter,
             child: TextButton(

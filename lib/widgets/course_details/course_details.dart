@@ -22,25 +22,13 @@ class CourseDetails extends StatelessWidget {
           sizingInformation.deviceScreenType == DeviceScreenType.mobile
               ? 16
               : 21;
-      return SizedBox(
-        width: 600,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const SizedBox(
-              height: 30,
-            ),
-            Text(
-              mainDesc,
-              style: TextStyle(
-                fontSize: descriptionSize,
-                height: 1.7,
-              ),
-              textAlign: textAlignment,
-            )
-          ],
+      return Text(
+        mainDesc,
+        style: TextStyle(
+          fontSize: descriptionSize,
+          height: 1.7,
         ),
+        textAlign: textAlignment,
       );
     });
   }

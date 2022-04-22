@@ -1,5 +1,4 @@
 import 'package:alderautomationsdotcom/globals.dart';
-import 'package:alderautomationsdotcom/widgets/centerted_view/centerted_view.dart';
 import 'package:alderautomationsdotcom/widgets/projects_box/projects_box.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
@@ -57,32 +56,31 @@ class _ProjectsViewState extends State<ProjectsView>
       animation: _controller,
       builder: (BuildContext context, Widget? child) {
         return ClipPath(
-            clipper: DrawClip(_controller.value),
-            child: Container(
-              decoration: const BoxDecoration(
-                color: brandBlue,
-              ),
-              height: size.height,
-              child: CenteredView(
-                child: Stack(children: [
-                  SizedBox(
-                    child: ScreenTypeLayout(
-                      mobile: Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 125),
-                        child: Scrollbar(
-                          scrollbarOrientation: ScrollbarOrientation.right,
-                          isAlwaysShown: true,
-                          child: ListView(
-                            children: content,
-                          ),
-                        ),
+          clipper: DrawClip(_controller.value),
+          child: Container(
+            decoration: const BoxDecoration(
+              color: brandBlue,
+            ),
+            height: size.height,
+            child: Stack(children: [
+              SizedBox(
+                child: ScreenTypeLayout(
+                  mobile: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 125),
+                    child: Scrollbar(
+                      scrollbarOrientation: ScrollbarOrientation.right,
+                      isAlwaysShown: true,
+                      child: ListView(
+                        children: content,
                       ),
-                      desktop: Column(children: content),
                     ),
                   ),
-                ]),
+                  desktop: Column(children: content),
+                ),
               ),
-            ));
+            ]),
+          ),
+        );
       },
     );
   }

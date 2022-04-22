@@ -1,7 +1,5 @@
 import 'package:alderautomationsdotcom/widgets/call_to_action/call_to_action.dart';
-import 'package:alderautomationsdotcom/widgets/centerted_view/centerted_view.dart';
 import 'package:alderautomationsdotcom/widgets/course_details/course_details.dart';
-import 'package:alderautomationsdotcom/widgets/navigation/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -18,36 +16,36 @@ class MainView extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CenteredView(
-          child: ScreenTypeLayout(
-            mobile: Column(children: [
-              CourseDetails(mainDesc: mainDesc),
-              Center(
-                  child: CallToAction(
-                title_one: title_one,
-                title_two: title_two,
-                pgcntrl: pgctrl,
-                page_one: 4,
-                page_two: 5,
-              )),
-            ]),
-            desktop: Column(
-              children: [
-                SizedBox(height: size.height * 0.15),
-                Row(children: [
-                  CourseDetails(mainDesc: mainDesc),
-                  Center(
-                      child: CallToAction(
-                    title_one: title_one,
-                    title_two: title_two,
-                    pgcntrl: pgctrl,
-                    page_one: 4,
-                    page_two: 5,
-                  )),
-                ]),
-              ],
-            ),
+        ScreenTypeLayout(
+          mobile:
+              Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            CourseDetails(mainDesc: mainDesc),
+            Center(
+                child: CallToAction(
+              title_one: title_one,
+              title_two: title_two,
+              pgcntrl: pgctrl,
+              page_one: 4,
+              page_two: 5,
+            )),
+          ]),
+          desktop: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                CourseDetails(mainDesc: mainDesc),
+                Center(
+                    child: CallToAction(
+                  title_one: title_one,
+                  title_two: title_two,
+                  pgcntrl: pgctrl,
+                  page_one: 4,
+                  page_two: 5,
+                )),
+              ]),
+            ],
           ),
         ),
       ],

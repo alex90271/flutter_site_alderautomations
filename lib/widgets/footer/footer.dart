@@ -1,5 +1,4 @@
 import 'package:alderautomationsdotcom/globals.dart';
-import 'package:alderautomationsdotcom/widgets/centerted_view/centerted_view.dart';
 import 'package:flutter/material.dart';
 
 class Footer extends StatelessWidget {
@@ -7,11 +6,12 @@ class Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Align(
       alignment: FractionalOffset.bottomCenter,
       child: Container(
           alignment: Alignment.centerRight,
-          height: 75,
+          height: size.height * 0.055,
           color: brandBlack,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),

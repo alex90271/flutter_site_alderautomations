@@ -41,7 +41,7 @@ class NavDrawerPage extends StatelessWidget {
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(brandBlue),
             foregroundColor: MaterialStateProperty.all<Color>(brandWhite),
-            minimumSize: MaterialStateProperty.all(const Size.fromHeight(60))),
+            minimumSize: MaterialStateProperty.all(const Size.fromHeight(45))),
         onPressed: () {
           pgcntrl.jumpToPage(page);
           Navigator.pop(context);
@@ -70,7 +70,7 @@ class NavDrawerLink extends StatelessWidget {
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(brandBlue),
             foregroundColor: MaterialStateProperty.all<Color>(brandWhite),
-            minimumSize: MaterialStateProperty.all(const Size.fromHeight(60))),
+            minimumSize: MaterialStateProperty.all(const Size.fromHeight(45))),
         onPressed: () {
           _launchURL;
         },

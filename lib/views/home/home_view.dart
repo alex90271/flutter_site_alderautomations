@@ -32,8 +32,7 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
     return Scaffold(
       drawer: NavigationDrawer(pgcntrl: widget.controller),
       body: Stack(
-        clipBehavior: Clip.none,
-        fit: StackFit.expand,
+        fit: StackFit.loose,
         children: [
           PageView(
               children: [
@@ -42,7 +41,7 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
                 ),
                 const ProjectsView(),
                 TestimonialView(),
-                const AboutView(),
+                AboutView(),
                 const ContactView(),
               ],
               controller: widget.controller,
@@ -63,9 +62,10 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
                   pgctrl: widget.controller,
                 ),
               ),
-              const Align(
+              Container(
                 alignment: Alignment.bottomCenter,
-                child: Footer(),
+                margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                child: const Footer(),
               ),
             ],
           ),
