@@ -1,25 +1,10 @@
 import 'dart:developer';
-import 'package:alderautomationsdotcom/widgets/footer/footer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../../globals.dart';
 import 'package:validators/validators.dart';
 
-validSnack(context) =>
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        backgroundColor: brandWhite,
-        content: Text(
-          'Thank you. Your request has been sent.',
-          style: TextStyle(color: brandBlack),
-        )));
-
-invalidSnack(context) =>
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        backgroundColor: Colors.red,
-        content: Text(
-          'The submit function has not yet been implemented\nto contact, please email alex.alder1@gmail.com',
-          style: TextStyle(color: brandBlack),
-        )));
+import '../alert_dialog/alert_dialog.dart';
 
 class TextContactForm extends StatefulWidget {
   const TextContactForm({
@@ -74,13 +59,26 @@ class _TextContactFormState extends State<TextContactForm> {
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 log('valid inputs');
-                invalidSnack(context);
-                //validSnack(context);
-                //TODO submit data
+                showDialog(
+                    context: context,
+                    builder: (BuildContext cxt) {
+                      return const ShowValidAlert(
+                        validHeader: "Sucess",
+                        validBody: "Your request has been sent",
+                      );
+                    });
                 _formKey.currentState!.reset();
               } else {
                 log('invalid inputs');
-                invalidSnack(context);
+                showDialog(
+                    context: context,
+                    builder: (BuildContext cxt) {
+                      return const ShowInvalidAlert(
+                        invalidHeader: "Error",
+                        invalidBody:
+                            "There was an error with your request\nplease try again later",
+                      );
+                    });
               }
             },
             child: const Text(
