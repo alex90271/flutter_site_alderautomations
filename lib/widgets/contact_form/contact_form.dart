@@ -63,7 +63,7 @@ class _TextContactFormState extends State<TextContactForm> {
                     context: context,
                     builder: (BuildContext cxt) {
                       return const ShowValidAlert(
-                        validHeader: "Sucess",
+                        validHeader: "Success",
                         validBody: "Your request has been sent",
                       );
                     });
@@ -76,7 +76,7 @@ class _TextContactFormState extends State<TextContactForm> {
                       return const ShowInvalidAlert(
                         invalidHeader: "Error",
                         invalidBody:
-                            "There was an error with your request\nplease try again later",
+                            "There was an error with your request\nplease try again later\nor email us at alex@alderautomations.com",
                       );
                     });
               }
