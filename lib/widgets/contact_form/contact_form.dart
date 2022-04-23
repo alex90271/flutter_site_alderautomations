@@ -3,8 +3,26 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../../globals.dart';
 import 'package:validators/validators.dart';
-
 import '../alert_dialog/alert_dialog.dart';
+
+FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+const length = 30;
+
+decoration(labeltxt) => InputDecoration(
+    contentPadding: const EdgeInsets.fromLTRB(0, 16, 0, 12),
+    focusColor: brandBlack,
+    counterStyle: const TextStyle(
+      color: brandWhite,
+    ),
+    labelText: labeltxt,
+    labelStyle: TextStyle(color: brandWhite),
+    fillColor: brandWhite,
+    hoverColor: brandWhite,
+    enabledBorder: const UnderlineInputBorder(
+      borderSide: BorderSide(color: brandWhite),
+    ),
+    constraints: BoxConstraints(maxWidth: 350, maxHeight: 100));
 
 class TextContactForm extends StatefulWidget {
   const TextContactForm({
@@ -17,40 +35,123 @@ class TextContactForm extends StatefulWidget {
 
 class _TextContactFormState extends State<TextContactForm> {
   final _formKey = GlobalKey<FormState>();
+  String fName = '',
+      lName = '',
+      buisnessName = '',
+      phone = '',
+      email = '',
+      projType = '';
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
       child: Column(
         children: [
-          FormattedTextField(
-              initial: '',
-              length: 30,
-              label: 'First Name',
-              helper: 'First Name'),
-          FormattedTextField(
-            initial: '',
-            length: 30,
-            label: 'Last Name',
-            helper: 'Last Name',
+          TextFormField(
+            validator: (value) {
+              if (value!.isNotEmpty) {
+                return null;
+              } else {
+                return value;
+              }
+            },
+            onSaved: (value) {
+              fName = value!;
+            },
+            maxLength: length,
+            decoration: decoration('First Name'),
+            style: const TextStyle(
+              color: brandWhite,
+            ),
           ),
-          FormattedTextField(
-            initial: '',
-            length: 30,
-            label: 'Buisness Name',
-            helper: 'Business Name',
+          TextFormField(
+            validator: (value) {
+              if (value!.isNotEmpty) {
+                return null;
+              } else {
+                return value;
+              }
+            },
+            onSaved: (value) {
+              lName = value!;
+            },
+            maxLength: length,
+            decoration: decoration('Last Name'),
+            style: const TextStyle(
+              color: brandWhite,
+            ),
           ),
-          FormattedPhoneField(
-            initial: '',
+          TextFormField(
+            validator: (value) {
+              if (value!.isNotEmpty) {
+                return null;
+              } else {
+                return value;
+              }
+            },
+            onSaved: (value) {
+              buisnessName = value!;
+            },
+            maxLength: length,
+            decoration: decoration('Buisness Name'),
+            style: const TextStyle(
+              color: brandWhite,
+            ),
           ),
-          FormattedEmailField(
-            initial: '',
+          TextFormField(
+            validator: (value) {
+              if (value!.isNotEmpty) {
+                if (isNumeric(value)) {
+                  return null;
+                }
+              } else {
+                return value;
+              }
+            },
+            onSaved: (value) {
+              phone = value!;
+            },
+            maxLength: length,
+            decoration: decoration('Phone'),
+            style: const TextStyle(
+              color: brandWhite,
+            ),
           ),
-          FormattedTextField(
-            initial: '',
-            length: 30,
-            label: 'Project Type',
-            helper: 'Project Type',
+          TextFormField(
+            validator: (value) {
+              if (value!.isNotEmpty) {
+                if (isEmail(value)) {
+                  return null;
+                }
+              } else {
+                return value;
+              }
+            },
+            onSaved: (value) {
+              email = value!;
+            },
+            maxLength: length,
+            decoration: decoration('Email'),
+            style: const TextStyle(
+              color: brandWhite,
+            ),
+          ),
+          TextFormField(
+            validator: (value) {
+              if (value!.isNotEmpty) {
+                return null;
+              } else {
+                return value;
+              }
+            },
+            onSaved: (value) {
+              projType = value!;
+            },
+            maxLength: length,
+            decoration: decoration('Project Type'),
+            style: const TextStyle(
+              color: brandWhite,
+            ),
           ),
           ElevatedButton(
             //submit button
@@ -59,15 +160,35 @@ class _TextContactFormState extends State<TextContactForm> {
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 log('valid inputs');
-                showDialog(
-                    context: context,
-                    builder: (BuildContext cxt) {
-                      return const ShowValidAlert(
-                        validHeader: "Success",
-                        validBody: "Your request has been sent",
-                      );
-                    });
-                _formKey.currentState!.reset();
+                _formKey.currentState!.save();
+                FirebaseFirestore.instance
+                    .collection("contact_form")
+                    .add({
+                      "firstname": fName,
+                      "lastname": lName,
+                      "buisnessname": buisnessName,
+                      "email": email,
+                      "phone": phone,
+                      "projectype": projType,
+                      "timestamp": DateTime.now(),
+                    })
+                    .then((value) => showDialog(
+                        context: context,
+                        builder: (BuildContext cxt) {
+                          return const ShowValidAlert(
+                            validHeader: "Success",
+                            validBody: "Your request has been saved",
+                          );
+                        }))
+                    .catchError((error) => showDialog(
+                        context: context,
+                        builder: (BuildContext cxt) {
+                          return const ShowValidAlert(
+                            validHeader: "Error",
+                            validBody:
+                                "There was an error with your request\nplease try again later\nor email us at alex@alderautomations.com",
+                          );
+                        }));
               } else {
                 log('invalid inputs');
                 showDialog(
@@ -87,256 +208,6 @@ class _TextContactFormState extends State<TextContactForm> {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class FormattedTextField extends StatelessWidget {
-  String initial;
-  int length;
-  String label;
-  String helper;
-
-  FormattedTextField({
-    Key? key,
-    required this.initial,
-    required this.length,
-    required this.label,
-    required this.helper,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 350,
-      height: 100,
-      child: TextFormField(
-        validator: (value) {
-          if (value!.isNotEmpty) {
-            return null;
-          } else {
-            return value;
-          }
-        },
-        initialValue: initial,
-        maxLength: length,
-        onChanged: (String value) {
-          helper = value + " is invalid";
-        },
-        textCapitalization: TextCapitalization.characters,
-        style: const TextStyle(
-          color: brandWhite,
-        ),
-        decoration: InputDecoration(
-          labelText: label,
-          counterStyle: const TextStyle(
-            color: brandWhite,
-          ),
-          labelStyle: const TextStyle(
-            color: brandWhite,
-          ),
-          helperText: helper,
-          helperStyle: const TextStyle(
-            color: brandWhite,
-          ),
-          hoverColor: brandWhite,
-          enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: brandWhite),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class FormattedPhoneField extends StatelessWidget {
-  String initial;
-  String label;
-  String helper;
-  int length;
-
-  FormattedPhoneField({
-    Key? key,
-    required this.initial,
-    this.label = "Phone",
-    this.helper = "Phone",
-    this.length = 10,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 350,
-      height: 100,
-      child: TextFormField(
-        validator: (value) {
-          if (value!.isNotEmpty) {
-            if (isNumeric(value)) {
-              return null;
-            }
-          } else {
-            return value;
-          }
-        },
-        initialValue: initial,
-        maxLength: length,
-        onChanged: (String value) {
-          //log(value);
-          helper = value + " is an invalid phone number";
-        },
-        textCapitalization: TextCapitalization.characters,
-        style: const TextStyle(
-          color: brandWhite,
-        ),
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.fromLTRB(0, 16, 0, 12),
-          floatingLabelAlignment: FloatingLabelAlignment.center,
-          labelText: label,
-          focusColor: brandBlack,
-          counterStyle: const TextStyle(
-            color: brandWhite,
-          ),
-          labelStyle: const TextStyle(
-            color: brandWhite,
-          ),
-          helperText: helper,
-          helperStyle: const TextStyle(
-            color: brandWhite,
-          ),
-          fillColor: brandWhite,
-          hoverColor: brandWhite,
-          enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: brandWhite),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class FormattedEmailField extends StatelessWidget {
-  String initial;
-  String label;
-  String helper;
-  int length;
-
-  FormattedEmailField({
-    Key? key,
-    required this.initial,
-    this.label = "Email",
-    this.helper = "Email",
-    this.length = 50,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 350,
-      height: 100,
-      child: TextFormField(
-        validator: (value) {
-          if (value!.isNotEmpty) {
-            if (isEmail(value)) {
-              return null;
-            }
-          } else {
-            return value;
-          }
-        },
-        initialValue: initial,
-        maxLength: length,
-        onChanged: (String value) {
-          //log(value);
-          helper = value + " is an invalid email";
-        },
-        textCapitalization: TextCapitalization.characters,
-        style: const TextStyle(
-          color: brandWhite,
-        ),
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.fromLTRB(0, 16, 0, 12),
-          floatingLabelAlignment: FloatingLabelAlignment.center,
-          labelText: label,
-          focusColor: brandBlack,
-          counterStyle: const TextStyle(
-            color: brandWhite,
-          ),
-          labelStyle: const TextStyle(
-            color: brandWhite,
-          ),
-          helperText: helper,
-          helperStyle: const TextStyle(
-            color: brandWhite,
-          ),
-          fillColor: brandWhite,
-          hoverColor: brandWhite,
-          enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: brandWhite),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class FormattedDateField extends StatelessWidget {
-  String initial;
-  String label;
-  String helper;
-  int length;
-
-  FormattedDateField({
-    Key? key,
-    required this.initial,
-    this.label = "Date",
-    this.helper = "(Ex. April 9 2022)",
-    this.length = 15,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 350,
-      height: 100,
-      child: TextFormField(
-        validator: (value) {
-          if (value!.isNotEmpty) {
-            if (isDate(value)) {
-              return value;
-            }
-          }
-        },
-        initialValue: initial,
-        maxLength: length,
-        onChanged: (String value) {
-          //log(value);
-        },
-        textCapitalization: TextCapitalization.characters,
-        style: const TextStyle(
-          color: brandWhite,
-        ),
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.fromLTRB(0, 16, 0, 12),
-          floatingLabelAlignment: FloatingLabelAlignment.center,
-          labelText: label,
-          focusColor: brandBlack,
-          counterStyle: const TextStyle(
-            color: brandWhite,
-          ),
-          labelStyle: const TextStyle(
-            color: brandWhite,
-          ),
-          helperText: helper,
-          helperStyle: const TextStyle(
-            color: brandWhite,
-          ),
-          fillColor: brandWhite,
-          hoverColor: brandWhite,
-          enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: brandWhite),
-          ),
-        ),
       ),
     );
   }
