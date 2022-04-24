@@ -3,19 +3,19 @@ import 'package:alderautomationsdotcom/widgets/projects_box/projects_box.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-List titles = [
+final List _titles = [
   'Custom Wordpress Websites',
   'Custom Flutter Applications',
   'Custom Python Automations',
   'System Management'
 ];
-List descriptions = [
+final List _descriptions = [
   'Get your own wordpress website, with easy access to an admin panel for custom conent editing',
   'Custom flutter Applications \nCompatible with both iOS, Android, Web, and more',
   'Create custom python scripts to help organize or automate your data',
   "We can help plan, design, and test your organizations' IT services"
 ];
-int itemCount = 4;
+const int _itemCount = 4;
 
 class ProjectsView extends StatefulWidget {
   const ProjectsView({Key? key}) : super(key: key);
@@ -68,11 +68,11 @@ class _ProjectsViewState extends State<ProjectsView>
                     scrollbarOrientation: ScrollbarOrientation.right,
                     isAlwaysShown: true,
                     child: ListView.builder(
-                        itemCount: itemCount,
+                        itemCount: _itemCount,
                         itemBuilder: (context, index) {
                           return ProjectsInfoBox(
-                            title: titles[index],
-                            desc: descriptions[index],
+                            title: _titles[index],
+                            desc: _descriptions[index],
                           );
                         }),
                   ),
