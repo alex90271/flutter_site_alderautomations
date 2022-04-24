@@ -72,7 +72,7 @@ class NavDrawerLink extends StatelessWidget {
             foregroundColor: MaterialStateProperty.all<Color>(brandWhite),
             minimumSize: MaterialStateProperty.all(const Size.fromHeight(45))),
         onPressed: () {
-          _launchURL;
+          _launchURL();
         },
         child: Text(title, style: TextStyle(fontSize: 16)),
       ),
