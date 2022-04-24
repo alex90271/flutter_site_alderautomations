@@ -3,7 +3,19 @@ import 'package:alderautomationsdotcom/widgets/projects_box/projects_box.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-import 'package:responsive_builder/responsive_builder.dart';
+List titles = [
+  'Custom Wordpress Websites',
+  'Custom Flutter Applications',
+  'Custom Python Automations',
+  'System Management'
+];
+List descriptions = [
+  'Get your own wordpress website, with easy access to an admin panel for custom conent editing',
+  'Custom flutter Applications \nCompatible with both iOS, Android, Web, and more',
+  'Create custom python scripts to help organize or automate your data',
+  "We can help plan, design, and test your organizations' IT services"
+];
+int itemCount = 4;
 
 class ProjectsView extends StatefulWidget {
   const ProjectsView({Key? key}) : super(key: key);
@@ -38,20 +50,6 @@ class _ProjectsViewState extends State<ProjectsView>
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    const content = <Widget>[
-      ProjectsInfoBox(
-          title: 'Custom Wordpress Websites',
-          desc:
-              'Build your own wordpress website, with easy access to an admin panel for custom conent editing'),
-      ProjectsInfoBox(
-          title: 'Custom Flutter Applications',
-          desc:
-              'Custom flutter Applications \nCompatible with both iOS, Android, Web, and more'),
-      ProjectsInfoBox(
-          title: 'Custom Python Scripts',
-          desc:
-              'Create custom python scripts to help organize or automate your data'),
-    ];
     return AnimatedBuilder(
       animation: _controller,
       builder: (BuildContext context, Widget? child) {
@@ -64,18 +62,20 @@ class _ProjectsViewState extends State<ProjectsView>
             height: size.height,
             child: Stack(children: [
               SizedBox(
-                child: ScreenTypeLayout(
-                  mobile: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 125),
-                    child: Scrollbar(
-                      scrollbarOrientation: ScrollbarOrientation.right,
-                      isAlwaysShown: true,
-                      child: ListView(
-                        children: content,
-                      ),
-                    ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 125),
+                  child: Scrollbar(
+                    scrollbarOrientation: ScrollbarOrientation.right,
+                    isAlwaysShown: true,
+                    child: ListView.builder(
+                        itemCount: itemCount,
+                        itemBuilder: (context, index) {
+                          return ProjectsInfoBox(
+                            title: titles[index],
+                            desc: descriptions[index],
+                          );
+                        }),
                   ),
-                  desktop: Column(children: content),
                 ),
               ),
             ]),
