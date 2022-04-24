@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+String _aboutText =
+    'Hi!\nI\'m Alex Alder\nI am a full stack developer\nspecializing in in Flutter, Python, Java, and Wordpress,\nI also have familiarity with JavaScript, C++, PHP, and am constantly learning more\n\nI am currently working on a POS integrated tip and payroll report generator';
+
 class AboutView extends StatelessWidget {
-  var aboutText =
-      'Hi!\nI\'m Alex Alder\nI am a full stack developer\nspecializing in in Flutter, Python, Java, and Wordpress,\nI also have familiarity with JavaScript, C++, PHP, and am constantly learning more\n\nI am currently working on a POS integrated tip and payroll report generator';
-  AboutView({Key? key}) : super(key: key);
+  const AboutView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +40,11 @@ class AboutView extends StatelessWidget {
                   const SizedBox(
                     width: 50,
                   ),
-                  Text(
-                    aboutText,
-                    style: const TextStyle(color: brandWhite, fontSize: 18),
+                  Flexible(
+                    child: Text(
+                      _aboutText,
+                      style: const TextStyle(color: brandWhite, fontSize: 18),
+                    ),
                   ),
                 ],
               )
@@ -71,7 +74,7 @@ class AboutView extends StatelessWidget {
                     height: 25,
                   ),
                   Text(
-                    aboutText,
+                    _aboutText,
                     style: const TextStyle(color: brandWhite, fontSize: 14),
                     textAlign: TextAlign.center,
                   ),
