@@ -15,7 +15,17 @@ class HomeContentDesktop extends StatefulWidget {
   }) : super(key: key);
 
   int _page = 0;
-  final controller = PageController(initialPage: 0);
+  final _itemCount = 5;
+  final _controller = PageController(initialPage: 0);
+  List homePageOrder(cntrllr) => [
+        MainView(
+          pgctrl: cntrllr,
+        ),
+        const ProjectsView(),
+        TestimonialView(),
+        const AboutView(),
+        const ContactView(),
+      ];
 
   @override
   State<HomeContentDesktop> createState() => _HomeContentDesktopState();
@@ -30,24 +40,21 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavigationDrawer(pgcntrl: widget.controller),
+      drawer: NavigationDrawer(pgcntrl: widget._controller),
       body: Stack(
         fit: StackFit.loose,
         children: [
-          PageView(
-              children: [
-                MainView(
-                  pgctrl: widget.controller,
-                ),
-                const ProjectsView(),
-                TestimonialView(),
-                AboutView(),
-                const ContactView(),
-              ],
-              controller: widget.controller,
+          PageView.builder(
+              itemBuilder: ((context, index) {
+                return widget.homePageOrder(widget._controller)[index];
+              }),
+              itemCount: widget._itemCount,
+              controller: widget._controller,
               scrollDirection: Axis.vertical,
               pageSnapping: false,
               padEnds: false,
+              physics: const ScrollPhysics(),
+              allowImplicitScrolling: true,
               onPageChanged: (x) {
                 setState(() {
                   widget._page = x;
@@ -59,7 +66,7 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
               Align(
                 alignment: Alignment.topCenter,
                 child: NaviBar(
-                  pgctrl: widget.controller,
+                  pgctrl: widget._controller,
                 ),
               ),
               Container(
