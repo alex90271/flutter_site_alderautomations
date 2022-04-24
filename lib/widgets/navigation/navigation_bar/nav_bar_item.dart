@@ -18,8 +18,9 @@ class NavBarPage extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        width: size.height * 0.15,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+            maxWidth: size.width * 0.15, minWidth: size.width * 0.10),
         child: ElevatedButton(
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(brandBlue)),
@@ -47,8 +48,9 @@ class NavBarLink extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        width: size.height * 0.15,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+            maxWidth: size.width * 0.15, minWidth: size.width * 0.10),
         child: ElevatedButton(
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(brandBlue)),
