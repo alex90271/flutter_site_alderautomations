@@ -83,3 +83,35 @@ class ShowInvalidAlert extends StatelessWidget {
     );
   }
 }
+
+class ShowLoadingAlert extends StatelessWidget {
+  final String loadingHeader;
+  final String loadingBody;
+  const ShowLoadingAlert(
+      {Key? key,
+      this.loadingBody = "This is a loading dialog box",
+      this.loadingHeader = "Loading"})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Row(
+        children: [
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: CircularProgressIndicator(),
+          ),
+          Text(loadingHeader),
+        ],
+      ),
+      content: SingleChildScrollView(
+        child: ListBody(
+          children: <Widget>[
+            Text(loadingBody),
+          ],
+        ),
+      ),
+    );
+  }
+}
