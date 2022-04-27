@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:alderautomationsdotcom/globals.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -14,7 +15,7 @@ class NavDrawerHeader extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          SizedBox(height: 125, child: Image.asset('AA_main.png')),
+          SizedBox(height: 125, child: Image.asset(navBarHeader)),
         ],
       ),
     );
@@ -83,7 +84,7 @@ class NavDrawerLink extends StatelessWidget {
     if (await canLaunch(url)) {
       await launch(url);
     } else {
-      print('Could not launch $url'); //remove for production
+      log('Could not launch $url');
     }
   }
 }

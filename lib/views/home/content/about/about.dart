@@ -22,7 +22,7 @@ class AboutView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Padding(
-                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                padding: EdgeInsets.fromLTRB(5, 15, 0, 0),
                 child: Text(
                   'About',
                   textAlign: TextAlign.center,
@@ -34,7 +34,7 @@ class AboutView extends StatelessWidget {
                 children: [
                   ClipOval(
                       child: Image.asset(
-                    'headshot.jpeg',
+                    headShot,
                     height: size.height / 2,
                   )),
                   const SizedBox(
@@ -53,7 +53,7 @@ class AboutView extends StatelessWidget {
           mobile: Column(
             children: [
               const Padding(
-                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                padding: EdgeInsets.fromLTRB(5, 15, 0, 0),
                 child: Text(
                   'About',
                   textAlign: TextAlign.center,
@@ -67,7 +67,7 @@ class AboutView extends StatelessWidget {
                   ),
                   ClipOval(
                       child: Image.asset(
-                    'headshot.jpeg',
+                    headShot,
                     height: 225,
                   )),
                   const SizedBox(
