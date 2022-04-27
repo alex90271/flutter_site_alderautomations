@@ -6,7 +6,6 @@ import 'package:validators/validators.dart';
 import '../alert_dialog/alert_dialog.dart';
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
-
 const length = 30;
 
 decoration(labeltxt) => InputDecoration(
@@ -207,7 +206,7 @@ class _TextContactFormState extends State<TextContactForm> {
                       return const ShowInvalidAlert(
                         invalidHeader: "Error",
                         invalidBody:
-                            "There was an error with your request\nplease try again later\nor email us at alex@alderautomations.com",
+                            "Your inputs were invalid\nplease try again\nor email us at alex@alderautomations.com",
                       );
                     });
               }
