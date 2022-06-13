@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:alderautomationsdotcom/globals.dart';
 import 'package:alderautomationsdotcom/widgets/contact_form/contact_form.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +12,7 @@ class ContactView extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Consumer<ScreenHeight>(builder: (context, _res, child) {
+      log(_res.isOpen.toString());
       return Container(
         color: brandBlue,
         child: Column(
@@ -26,12 +29,10 @@ class ContactView extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
               child: TextContactForm(),
             ),
-            Expanded(
-              child: SizedBox(
-                child: Container(color: brandBlack),
-                height: 200,
-              ),
-            )
+            SizedBox(
+              child: Container(color: _res.isOpen ? brandBlack : brandBlue),
+              height: _res.isOpen ? 200 : 10,
+            ),
           ],
         ),
       );
