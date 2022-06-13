@@ -40,6 +40,7 @@ class _TextContactFormState extends State<TextContactForm> {
       phone = '',
       email = '',
       projType = '';
+  final now = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -170,14 +171,18 @@ class _TextContactFormState extends State<TextContactForm> {
                     });
                 _formKey.currentState!.reset();
                 FirebaseFirestore.instance
-                    .collection("contact_form")
+                    .collection("mail")
                     .add({
                       "firstname": fName,
                       "lastname": lName,
                       "buisnessname": buisnessName,
-                      "email": email,
+                      "to": email,
                       "phone": phone,
-                      "projectype": projType,
+                      "message": {
+                        "subject": "New Message from $fName $lName",
+                        "text":
+                            "First: $fName\nLast: $lName\nPhone: $phone\nProject: $projType\nBuisness Name: $buisnessName\nSubmitted: $now)"
+                      },
                       "timestamp": DateTime.now(),
                     })
                     .then((value) => showDialog(
