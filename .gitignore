@@ -49,3 +49,7 @@ app.*.map.json
 lib/firebase_options.dart
 android/app/google-services.json
 ios/firebase_app_id_file.json
+.github/workflows/firebase-hosting-merge.yml
+.github/workflows/firebase-hosting-pull-request.yml
+.github/workflows/firebase-hosting-pull-request.yml
+.github/workflows/firebase-hosting-pull-request.yml
