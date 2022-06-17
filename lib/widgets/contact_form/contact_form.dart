@@ -6,7 +6,8 @@ import 'package:validators/validators.dart';
 import '../alert_dialog/alert_dialog.dart';
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
-const length = 30;
+const length = 50;
+const inputFormTextStyle = TextStyle(color: brandWhite, fontFamily: 'Roboto');
 
 decoration(labeltxt) => InputDecoration(
     contentPadding: const EdgeInsets.fromLTRB(0, 16, 0, 12),
@@ -15,7 +16,7 @@ decoration(labeltxt) => InputDecoration(
       color: brandWhite,
     ),
     labelText: labeltxt,
-    labelStyle: TextStyle(color: brandWhite),
+    labelStyle: TextStyle(color: brandWhite, fontFamily: 'Lovelo'),
     fillColor: brandWhite,
     hoverColor: brandWhite,
     enabledBorder: const UnderlineInputBorder(
@@ -48,111 +49,98 @@ class _TextContactFormState extends State<TextContactForm> {
       child: Column(
         children: [
           TextFormField(
-            validator: (value) {
-              if (value!.isNotEmpty) {
-                return null;
-              } else {
-                return value;
-              }
-            },
-            onSaved: (value) {
-              fName = value!;
-            },
-            maxLength: length,
-            decoration: decoration('First Name'),
-            style: const TextStyle(
-              color: brandWhite,
-            ),
-          ),
-          TextFormField(
-            validator: (value) {
-              if (value!.isNotEmpty) {
-                return null;
-              } else {
-                return value;
-              }
-            },
-            onSaved: (value) {
-              lName = value!;
-            },
-            maxLength: length,
-            decoration: decoration('Last Name'),
-            style: const TextStyle(
-              color: brandWhite,
-            ),
-          ),
-          TextFormField(
-            validator: (value) {
-              if (value!.isNotEmpty) {
-                return null;
-              } else {
-                return value;
-              }
-            },
-            onSaved: (value) {
-              buisnessName = value!;
-            },
-            maxLength: length,
-            decoration: decoration('Buisness Name'),
-            style: const TextStyle(
-              color: brandWhite,
-            ),
-          ),
-          TextFormField(
-            validator: (value) {
-              if (value!.isNotEmpty) {
-                if (isNumeric(value)) {
+              validator: (value) {
+                if (value!.isNotEmpty) {
                   return null;
+                } else {
+                  return value;
                 }
-              } else {
-                return value;
-              }
-            },
-            onSaved: (value) {
-              phone = value!;
-            },
-            maxLength: length,
-            decoration: decoration('Phone'),
-            style: const TextStyle(
-              color: brandWhite,
-            ),
-          ),
+              },
+              onSaved: (value) {
+                fName = value!;
+              },
+              maxLength: length,
+              decoration: decoration('First Name'),
+              style: inputFormTextStyle),
           TextFormField(
-            validator: (value) {
-              if (value!.isNotEmpty) {
-                if (isEmail(value)) {
+              textCapitalization: TextCapitalization.none,
+              validator: (value) {
+                if (value!.isNotEmpty) {
                   return null;
+                } else {
+                  return value;
                 }
-              } else {
-                return value;
-              }
-            },
-            onSaved: (value) {
-              email = value!;
-            },
-            maxLength: length,
-            decoration: decoration('Email'),
-            style: const TextStyle(
-              color: brandWhite,
-            ),
-          ),
+              },
+              onSaved: (value) {
+                lName = value!;
+              },
+              maxLength: length,
+              decoration: decoration('Last Name'),
+              style: inputFormTextStyle),
           TextFormField(
-            validator: (value) {
-              if (value!.isNotEmpty) {
-                return null;
-              } else {
-                return value;
-              }
-            },
-            onSaved: (value) {
-              projType = value!;
-            },
-            maxLength: length,
-            decoration: decoration('Project Type'),
-            style: const TextStyle(
-              color: brandWhite,
-            ),
-          ),
+              textCapitalization: TextCapitalization.none,
+              validator: (value) {
+                if (value!.isNotEmpty) {
+                  return null;
+                } else {
+                  return value;
+                }
+              },
+              onSaved: (value) {
+                buisnessName = value!;
+              },
+              maxLength: length,
+              decoration: decoration('Buisness Name'),
+              style: inputFormTextStyle),
+          TextFormField(
+              textCapitalization: TextCapitalization.none,
+              validator: (value) {
+                if (value!.isNotEmpty) {
+                  if (isNumeric(value)) {
+                    return null;
+                  }
+                } else {
+                  return value;
+                }
+              },
+              onSaved: (value) {
+                phone = value!;
+              },
+              maxLength: length,
+              decoration: decoration('Phone'),
+              style: inputFormTextStyle),
+          TextFormField(
+              textCapitalization: TextCapitalization.none,
+              validator: (value) {
+                if (value!.isNotEmpty) {
+                  if (isEmail(value)) {
+                    return null;
+                  }
+                } else {
+                  return value;
+                }
+              },
+              onSaved: (value) {
+                email = value!;
+              },
+              maxLength: length,
+              decoration: decoration('Email'),
+              style: inputFormTextStyle),
+          TextFormField(
+              textCapitalization: TextCapitalization.none,
+              validator: (value) {
+                if (value!.isNotEmpty) {
+                  return null;
+                } else {
+                  return value;
+                }
+              },
+              onSaved: (value) {
+                projType = value!;
+              },
+              maxLength: length,
+              decoration: decoration('Project Type'),
+              style: inputFormTextStyle),
           ElevatedButton(
             //submit button
             style: ButtonStyle(
@@ -176,12 +164,12 @@ class _TextContactFormState extends State<TextContactForm> {
                       "firstname": fName,
                       "lastname": lName,
                       "buisnessname": buisnessName,
-                      "to": email,
+                      "to": '$email;alex@alderautomations.com',
                       "phone": phone,
                       "message": {
                         "subject": "New Message from $fName $lName",
                         "text":
-                            "First: $fName\nLast: $lName\nPhone: $phone\nProject: $projType\nBuisness Name: $buisnessName\nSubmitted: $now)"
+                            "First: $fName\nLast: $lName\nPhone: $phone\nProject: $projType\nBuisness Name: $buisnessName\nSubmitted: $now"
                       },
                       "timestamp": DateTime.now(),
                     })
