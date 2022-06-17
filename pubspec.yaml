@@ -35,6 +35,7 @@ dependencies:
   flutter_bloc: ^8.0.0
   validators: ^3.0.0
   cloud_firestore: ^3.1.11
+  flutter_keyboard_size: ^1.0.0+4
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -87,6 +88,9 @@ flutter:
     - family: Lovelo
       fonts:
         - asset: assets/fonts/Lovelo/Lovelo-Black.ttf
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-Regular.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
