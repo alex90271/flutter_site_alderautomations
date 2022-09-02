@@ -35,181 +35,165 @@ class TextContactForm extends StatefulWidget {
 
 class _TextContactFormState extends State<TextContactForm> {
   final _formKey = GlobalKey<FormState>();
-  String fName = '',
-      lName = '',
-      buisnessName = '',
-      phone = '',
-      email = '',
-      projType = '';
+  String fName = '', lName = '', buisnessName = '', phone = '', email = '';
   final now = DateTime.now();
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: [
-          TextFormField(
-              validator: (value) {
-                if (value!.isNotEmpty) {
-                  return null;
-                } else {
-                  return value;
-                }
-              },
-              onSaved: (value) {
-                fName = value!;
-              },
-              maxLength: length,
-              decoration: decoration('First Name'),
-              style: inputFormTextStyle),
-          TextFormField(
-              textCapitalization: TextCapitalization.none,
-              validator: (value) {
-                if (value!.isNotEmpty) {
-                  return null;
-                } else {
-                  return value;
-                }
-              },
-              onSaved: (value) {
-                lName = value!;
-              },
-              maxLength: length,
-              decoration: decoration('Last Name'),
-              style: inputFormTextStyle),
-          TextFormField(
-              textCapitalization: TextCapitalization.none,
-              validator: (value) {
-                if (value!.isNotEmpty) {
-                  return null;
-                } else {
-                  return value;
-                }
-              },
-              onSaved: (value) {
-                buisnessName = value!;
-              },
-              maxLength: length,
-              decoration: decoration('Buisness Name'),
-              style: inputFormTextStyle),
-          TextFormField(
-              textCapitalization: TextCapitalization.none,
-              validator: (value) {
-                if (value!.isNotEmpty) {
-                  if (isNumeric(value)) {
+    var keyboardSize = MediaQuery.of(context).viewInsets.bottom;
+    return Container(
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            TextFormField(
+                validator: (value) {
+                  if (value!.isNotEmpty) {
                     return null;
+                  } else {
+                    return value;
                   }
-                } else {
-                  return value;
-                }
-              },
-              onSaved: (value) {
-                phone = value!;
-              },
-              maxLength: length,
-              decoration: decoration('Phone'),
-              style: inputFormTextStyle),
-          TextFormField(
-              textCapitalization: TextCapitalization.none,
-              validator: (value) {
-                if (value!.isNotEmpty) {
-                  if (isEmail(value)) {
+                },
+                onSaved: (value) {
+                  fName = value!;
+                },
+                maxLength: length,
+                decoration: decoration('First Name'),
+                style: inputFormTextStyle),
+            TextFormField(
+                textCapitalization: TextCapitalization.none,
+                validator: (value) {
+                  if (value!.isNotEmpty) {
                     return null;
+                  } else {
+                    return value;
                   }
+                },
+                onSaved: (value) {
+                  lName = value!;
+                },
+                maxLength: length,
+                decoration: decoration('Last Name'),
+                style: inputFormTextStyle),
+            TextFormField(
+                textCapitalization: TextCapitalization.none,
+                validator: (value) {
+                  if (value!.isNotEmpty) {
+                    return null;
+                  } else {
+                    return value;
+                  }
+                },
+                onSaved: (value) {
+                  buisnessName = value!;
+                },
+                maxLength: length,
+                decoration: decoration('Buisness Name'),
+                style: inputFormTextStyle),
+            TextFormField(
+                textCapitalization: TextCapitalization.none,
+                validator: (value) {
+                  if (value!.isNotEmpty) {
+                    if (isNumeric(value)) {
+                      return null;
+                    }
+                  } else {
+                    return value;
+                  }
+                },
+                onSaved: (value) {
+                  phone = value!;
+                },
+                maxLength: length,
+                decoration: decoration('Phone'),
+                style: inputFormTextStyle),
+            TextFormField(
+                textCapitalization: TextCapitalization.none,
+                validator: (value) {
+                  if (value!.isNotEmpty) {
+                    if (isEmail(value)) {
+                      return null;
+                    }
+                  } else {
+                    return value;
+                  }
+                },
+                onSaved: (value) {
+                  email = value!;
+                },
+                maxLength: length,
+                decoration: decoration('Email'),
+                style: inputFormTextStyle),
+            ElevatedButton(
+              //submit button
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(brandBlack)),
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  _formKey.currentState!.save();
+                  log('valid inputs - saving and resetting state');
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext cxt) {
+                        return const ShowLoadingAlert(
+                          loadingBody: '',
+                          loadingHeader: 'Saving results',
+                        );
+                      });
+                  _formKey.currentState!.reset();
+                  FirebaseFirestore.instance
+                      .collection("mail")
+                      .add({
+                        "firstname": fName,
+                        "lastname": lName,
+                        "buisnessname": buisnessName,
+                        "to": '$email;alex@alderautomations.com',
+                        "phone": phone,
+                        "message": {
+                          "subject": "New Message from $fName $lName",
+                          "text":
+                              "First: $fName\nLast: $lName\nPhone: $phone\nBuisness Name: $buisnessName\nSubmitted: $now"
+                        },
+                        "timestamp": DateTime.now(),
+                      })
+                      .then((value) => showDialog(
+                          context: context,
+                          builder: (BuildContext cxt) {
+                            return const ShowValidAlert(
+                              validHeader: "Success",
+                              validBody: "Your request has been saved",
+                            );
+                          }))
+                      .catchError((error) => showDialog(
+                          context: context,
+                          builder: (BuildContext cxt) {
+                            return const ShowValidAlert(
+                              validHeader: "Error",
+                              validBody:
+                                  "There was an error with your request\nplease try again later\nor email us at alex@alderautomations.com",
+                            );
+                          }));
+                  Navigator.pop(context);
                 } else {
-                  return value;
+                  log('invalid inputs');
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext cxt) {
+                        return const ShowInvalidAlert(
+                          invalidHeader: "Error",
+                          invalidBody:
+                              "Your inputs were invalid\nplease try again\nor email us at alex@alderautomations.com",
+                        );
+                      });
                 }
               },
-              onSaved: (value) {
-                email = value!;
-              },
-              maxLength: length,
-              decoration: decoration('Email'),
-              style: inputFormTextStyle),
-          TextFormField(
-              textCapitalization: TextCapitalization.none,
-              validator: (value) {
-                if (value!.isNotEmpty) {
-                  return null;
-                } else {
-                  return value;
-                }
-              },
-              onSaved: (value) {
-                projType = value!;
-              },
-              maxLength: length,
-              decoration: decoration('Project Type'),
-              style: inputFormTextStyle),
-          ElevatedButton(
-            //submit button
-            style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(brandBlack)),
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-                log('valid inputs - saving and resetting state');
-                showDialog(
-                    context: context,
-                    builder: (BuildContext cxt) {
-                      return const ShowLoadingAlert(
-                        loadingBody: '',
-                        loadingHeader: 'Saving results',
-                      );
-                    });
-                _formKey.currentState!.reset();
-                FirebaseFirestore.instance
-                    .collection("mail")
-                    .add({
-                      "firstname": fName,
-                      "lastname": lName,
-                      "buisnessname": buisnessName,
-                      "to": '$email;alex@alderautomations.com',
-                      "phone": phone,
-                      "message": {
-                        "subject": "New Message from $fName $lName",
-                        "text":
-                            "First: $fName\nLast: $lName\nPhone: $phone\nProject: $projType\nBuisness Name: $buisnessName\nSubmitted: $now"
-                      },
-                      "timestamp": DateTime.now(),
-                    })
-                    .then((value) => showDialog(
-                        context: context,
-                        builder: (BuildContext cxt) {
-                          return const ShowValidAlert(
-                            validHeader: "Success",
-                            validBody: "Your request has been saved",
-                          );
-                        }))
-                    .catchError((error) => showDialog(
-                        context: context,
-                        builder: (BuildContext cxt) {
-                          return const ShowValidAlert(
-                            validHeader: "Error",
-                            validBody:
-                                "There was an error with your request\nplease try again later\nor email us at alex@alderautomations.com",
-                          );
-                        }));
-                Navigator.pop(context);
-              } else {
-                log('invalid inputs');
-                showDialog(
-                    context: context,
-                    builder: (BuildContext cxt) {
-                      return const ShowInvalidAlert(
-                        invalidHeader: "Error",
-                        invalidBody:
-                            "Your inputs were invalid\nplease try again\nor email us at alex@alderautomations.com",
-                      );
-                    });
-              }
-            },
-            child: const Text(
-              'Submit',
-              style: TextStyle(color: brandWhite),
+              child: const Text(
+                'Submit',
+                style: TextStyle(color: brandWhite),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
