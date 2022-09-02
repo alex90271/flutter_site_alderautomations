@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 class TestimonialBox extends StatelessWidget {
   final title;
   final desc;
-  const TestimonialBox({Key? key, required this.title, required this.desc})
+  final img;
+  const TestimonialBox(
+      {Key? key, required this.title, required this.desc, required this.img})
       : super(key: key);
 
   @override
@@ -13,7 +15,12 @@ class TestimonialBox extends StatelessWidget {
       child: Center(
         child: Row(
           children: [
-            TestimonialCard(title: title, onPressed: () {}, desc: desc),
+            TestimonialCard(
+              title: title,
+              onPressed: () {},
+              desc: desc,
+              img: img,
+            ),
           ],
         ),
       ),
@@ -22,16 +29,18 @@ class TestimonialBox extends StatelessWidget {
 }
 
 class TestimonialCard extends StatelessWidget {
-  const TestimonialCard({
-    Key? key,
-    required this.title,
-    required this.onPressed,
-    required this.desc,
-  }) : super(key: key);
-
   final title;
   final onPressed;
   final desc;
+  final img;
+
+  const TestimonialCard(
+      {Key? key,
+      required this.title,
+      required this.onPressed,
+      required this.desc,
+      required this.img})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,36 +52,35 @@ class TestimonialCard extends StatelessWidget {
         height: size.height * 0.75,
         child: Card(
           color: const Color.fromARGB(255, 207, 207, 207),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Padding(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    title,
-                    textDirection: TextDirection.ltr,
-                    style: const TextStyle(
-                      fontSize: 32,
-                      color: Colors.black87,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      title,
+                      style: const TextStyle(
+                        fontSize: 25,
+                        color: Colors.black87,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Container(
-                child: Row(
-                  children: [
-                    IconButton(
-                        onPressed: onPressed,
-                        icon: const Icon(Icons.insert_comment)),
-                    Text(
-                      desc,
-                    ),
-                  ],
+                Expanded(
+                  child: Text(
+                    desc,
+                    style: TextStyle(height: 1.5),
+                  ),
                 ),
-                padding: const EdgeInsets.all(8.0),
-              ),
-            ],
+                Image.asset(
+                  img,
+                  height: size.height / 4,
+                )
+              ],
+            ),
           ),
         ),
       ),

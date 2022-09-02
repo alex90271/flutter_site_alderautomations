@@ -10,3 +10,6 @@ const mainTitle = 'Alder Automations';
 const mainLogo = 'assets/AA_blk_ico.png';
 const headShot = 'assets/headshot.jpeg';
 const navBarHeader = 'assets/AA_main.png';
+
+const mndrn = 'assets/mndrn.png';
+const wshgroom = 'assets/wshgrm.png';
