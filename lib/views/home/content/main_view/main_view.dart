@@ -16,7 +16,6 @@ class MainView extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
-      color: Color.fromARGB(255, 163, 225, 253),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
