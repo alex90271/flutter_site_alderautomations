@@ -15,46 +15,49 @@ class MainView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ScreenTypeLayout(
-          mobile:
-              Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            const CourseDetails(mainDesc: _mainDesc),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-              child: Center(
-                  child: CallToAction(
-                title_one: _titleOne,
-                title_two: _titleTwo,
-                pgcntrl: pgctrl,
-                page_one: 3,
-                page_two: 4,
-              )),
+    return Container(
+      color: Color.fromARGB(255, 163, 225, 253),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ScreenTypeLayout(
+            mobile:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const CourseDetails(mainDesc: _mainDesc),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+                child: Center(
+                    child: CallToAction(
+                  title_one: _titleOne,
+                  title_two: _titleTwo,
+                  pgcntrl: pgctrl,
+                  page_one: 3,
+                  page_two: 4,
+                )),
+              ),
+            ]),
+            desktop: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  const CourseDetails(mainDesc: _mainDesc),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+                    child: Center(
+                        child: CallToAction(
+                      title_one: _titleOne,
+                      title_two: _titleTwo,
+                      pgcntrl: pgctrl,
+                      page_one: 3,
+                      page_two: 4,
+                    )),
+                  ),
+                ]),
+              ],
             ),
-          ]),
-          desktop: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                const CourseDetails(mainDesc: _mainDesc),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-                  child: Center(
-                      child: CallToAction(
-                    title_one: _titleOne,
-                    title_two: _titleTwo,
-                    pgcntrl: pgctrl,
-                    page_one: 3,
-                    page_two: 4,
-                  )),
-                ),
-              ]),
-            ],
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

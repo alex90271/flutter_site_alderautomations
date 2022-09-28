@@ -11,9 +11,12 @@ class ProjectsInfoBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    var size = MediaQuery.of(context).size;
+    return Container(
+      width: size.width / 2,
       padding: const EdgeInsets.all(8.0),
       child: Card(
+        margin: const EdgeInsets.fromLTRB(30, 15, 30, 0),
         color: const Color.fromARGB(255, 207, 207, 207),
         child: Column(
           children: [

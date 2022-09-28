@@ -60,6 +60,7 @@ class _ProjectsViewState extends State<ProjectsView>
               color: brandBlue,
             ),
             height: size.height,
+            width: size.width / 3,
             child: Stack(children: [
               SizedBox(
                 child: Padding(
