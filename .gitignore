@@ -53,3 +53,4 @@ ios/firebase_app_id_file.json
 .github/workflows/firebase-hosting-pull-request.yml
 .github/workflows/firebase-hosting-pull-request.yml
 lib/widgets/text_to_speech/apikey.txt
+assets/api_key.txt
