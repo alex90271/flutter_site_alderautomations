@@ -8,7 +8,6 @@ const api_url = 'https://texttospeech.googleapis.com/v1/';
 
 class AudioResponse {
   final String audioContent;
-
   AudioResponse(this.audioContent);
 
   AudioResponse.fromJson(Map<String, dynamic> json)
@@ -21,7 +20,7 @@ class TextToSpeechService {
   TextToSpeechService([this._apiKey = '']);
 
   _getApiUrl(String endpoint) {
-    return '$api_url$endpoint?key=$_apiKey';
+    return Uri.parse('$api_url$endpoint?key=$_apiKey');
   }
 
   _getResponse(Future<http.Response> request) {
