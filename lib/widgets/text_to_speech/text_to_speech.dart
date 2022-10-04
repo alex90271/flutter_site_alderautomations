@@ -16,7 +16,7 @@ api(text, voiceName, languageCode) {
       languageCode: languageCode));
 
   mp3.then((file) {
-    final blob = html.Blob([file.audioContent]);
+    final blob = html.Blob([file]);
     final url = html.Url.createObjectUrlFromBlob(blob);
     final anchor = html.document.createElement('a') as html.AnchorElement
       ..href = url

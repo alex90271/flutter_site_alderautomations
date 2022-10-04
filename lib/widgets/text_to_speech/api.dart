@@ -19,6 +19,11 @@ class TextToSpeechService {
 
   TextToSpeechService([this._apiKey = '']);
 
+  _formatMP3(AudioResponse response) {
+    return base64.decode(response.audioContent);
+    //return FileService.createAndWriteFile('out.mp3', bytes);
+  }
+
   _getApiUrl(String endpoint) {
     return Uri.parse('$api_url$endpoint?key=$_apiKey');
   }
@@ -55,7 +60,7 @@ class TextToSpeechService {
     try {
       var response = await _getResponse(request);
       AudioResponse audioResponse = AudioResponse.fromJson(response);
-      return audioResponse;
+      return _formatMP3(audioResponse);
     } catch (e) {
       rethrow;
     }
