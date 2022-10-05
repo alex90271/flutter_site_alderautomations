@@ -55,7 +55,7 @@ class TextToSpeechService {
       String languageCode = 'en-US'}) async {
     const endpoint = 'text:synthesize';
     String body =
-        '{"input": {"text":"$text"},"voice": {"languageCode": "$languageCode", "name": "$voiceName"},"audioConfig": {"audioEncoding": "$audioEncoding"}}';
+        '{"input": {"ssml":"$text"},"voice": {"languageCode": "$languageCode", "name": "$voiceName"},"audioConfig": {"audioEncoding": "$audioEncoding"}}';
     Future<http.Response> request = http.post(_getApiUrl(endpoint), body: body);
     try {
       var response = await _getResponse(request);
