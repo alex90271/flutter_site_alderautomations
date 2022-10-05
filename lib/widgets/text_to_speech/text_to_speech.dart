@@ -11,7 +11,7 @@ api(text, voiceName, languageCode, fileName) {
   TextToSpeechService service = TextToSpeechService();
 
   Future mp3 = Future(() => service.textToSpeech(
-      text: text,
+      text: "<speak>" + text + "</speak>",
       voiceName: voiceName,
       audioEncoding: 'MP3',
       languageCode: languageCode));
@@ -72,6 +72,8 @@ class _TextInputState extends State<TextInput> {
         child: Column(
           children: [
             TextFormField(
+              minLines: 1,
+              maxLines: 15,
               style: inputFormTextStyle,
               validator: (value) {
                 if (value!.isNotEmpty) {
