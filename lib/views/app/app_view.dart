@@ -13,7 +13,6 @@ class AppView extends StatelessWidget {
           color: const Color.fromARGB(255, 163, 225, 253),
           child: Column(
             children: [
-              const Text('Text to Speech Test'),
               const TextToSpeech(),
             ],
           ),
