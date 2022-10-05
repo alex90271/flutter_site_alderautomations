@@ -19,8 +19,8 @@ class AppView extends StatelessWidget {
                   'To add a speaking break, write or copy / paste this line:'),
               const Padding(
                 padding: EdgeInsets.all(8.0),
-                child: Text(
-                  "     <break time=\"2s\"/>",
+                child: SelectableText(
+                  "<break time=\"2s\"/>",
                   style: TextStyle(fontFamily: 'roboto'),
                 ),
               ),
