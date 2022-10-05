@@ -140,6 +140,7 @@ class _TextInputState extends State<TextInput> {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     log('valid inputs - saving and resetting state');
+                    _text = _text.replaceAll('"', '\\"');
                     api(
                         _text,
                         'en-US-Wavenet-D', //voice
