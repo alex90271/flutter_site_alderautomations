@@ -1,10 +1,9 @@
-import 'package:alderautomationsdotcom/widgets/text_to_speech/text_to_speech.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:validators/validators.dart';
+import '../../widgets/text_to_speech/tts.dart';
 
-class AppView extends StatelessWidget {
-  const AppView({Key? key}) : super(key: key);
+class TextToSpeechView extends StatelessWidget {
+  const TextToSpeechView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
