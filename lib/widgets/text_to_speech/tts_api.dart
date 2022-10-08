@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 //adapted from https://github.com/LucaDe/text_to_speech_api
 
-const api_url = 'https://texttospeech.googleapis.com/v1/';
+const apiUrl = 'https://texttospeech.googleapis.com/v1/';
 
 class AudioResponse {
   final String audioContent;
@@ -25,12 +25,11 @@ class TextToSpeechService {
   }
 
   _getApiUrl(String endpoint) {
-    return Uri.parse('$api_url$endpoint?key=$_apiKey');
+    return Uri.parse('$apiUrl$endpoint?key=$_apiKey');
   }
 
   _getResponse(Future<http.Response> request) {
     return request.then((response) {
-      print(response.statusCode);
       if (response.statusCode == 200) {
         return jsonDecode(response.body);
       }
