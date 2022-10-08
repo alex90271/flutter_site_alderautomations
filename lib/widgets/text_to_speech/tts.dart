@@ -37,6 +37,15 @@ api(text, voiceName, languageCode, fileName, context) {
     html.document.body!.children.remove(anchor);
     html.Url.revokeObjectUrl(url);
 
+    showDialog(
+        context: context,
+        builder: (BuildContext cxt) {
+          return const ShowValidAlert(
+            validHeader: "Success",
+            validBody: "Your mp3 file will download in a moment",
+          );
+        });
+
     return file;
   });
   mp3.catchError((error) => showDialog(
