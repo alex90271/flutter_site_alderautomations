@@ -100,7 +100,7 @@ class _TextInputState extends State<TextInput> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+        padding: const EdgeInsets.fromLTRB(50, 0, 50, 0),
         child: Form(
             key: _formKey,
             child: Column(children: [
@@ -135,41 +135,48 @@ class _TextInputState extends State<TextInput> {
                   ),
                 ),
               ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 16, 5, 12),
-                    child: ElevatedButton(
-                      //submit button
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(brandBlack)),
-                      onPressed: () {
-                        appendText("<break time=\"200ms\"/>", txt);
-                      },
-                      child: const Text(
-                        'Add 200 millisecond pause',
-                        style: TextStyle(color: brandWhite),
+              ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 500),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 16, 5, 12),
+                        child: ElevatedButton(
+                          //submit button
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(brandBlack)),
+                          onPressed: () {
+                            appendText("<break time=\"200ms\"/>", txt);
+                          },
+                          child: const Text(
+                            'Add 200 millisecond pause',
+                            style: TextStyle(color: brandWhite),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 16, 5, 12),
-                    child: ElevatedButton(
-                      //submit button
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(brandBlack)),
-                      onPressed: () {
-                        appendText("<break time=\"1s\"/>", txt);
-                      },
-                      child: const Text(
-                        'Add 1 second pause',
-                        style: TextStyle(color: brandWhite),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 16, 5, 12),
+                        child: ElevatedButton(
+                          //submit button
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(brandBlack)),
+                          onPressed: () {
+                            appendText("<break time=\"1s\"/>", txt);
+                          },
+                          child: const Text(
+                            'Add 1 second pause',
+                            style: TextStyle(color: brandWhite),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               TextFormField(
                 style: inputFormTextStyle,
@@ -199,67 +206,76 @@ class _TextInputState extends State<TextInput> {
                   ),
                 ),
               ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 16, 5, 12),
-                    child: ElevatedButton(
-                      //submit button
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(brandBlue)),
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          _formKey.currentState!.save();
-                          log('valid inputs - saving and resetting state');
-                          text = text.replaceAll('"', '\\"');
-                          api(
-                              text,
-                              'en-US-Wavenet-D', //voice
-                              'en-US',
-                              _fileName,
-                              context //language
-                              );
-                          _formKey.currentState!.reset();
-                        }
-                      },
-                      child: const Text(
-                        'Process and Download MP3',
-                        style: TextStyle(color: brandWhite),
+              ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 750),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 16, 5, 12),
+                        child: ElevatedButton(
+                          //submit button
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(brandBlue)),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              _formKey.currentState!.save();
+                              log('valid inputs - saving and resetting state');
+                              text = text.replaceAll('"', '\\"');
+                              api(
+                                  text,
+                                  'en-US-Wavenet-D', //voice
+                                  'en-US',
+                                  _fileName,
+                                  context //language
+                                  );
+                              _formKey.currentState!.reset();
+                            }
+                          },
+                          child: const Text(
+                            'Process and Download MP3',
+                            style: TextStyle(color: brandWhite),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 16, 5, 12),
-                    child: ElevatedButton(
-                      //submit button
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              Color.fromARGB(255, 122, 122, 122))),
-                      onPressed: () {
-                        txt.text = exampleInput;
-                      },
-                      child: const Text(
-                        'Try Example',
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 16, 5, 12),
+                        child: ElevatedButton(
+                          //submit button
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Color.fromARGB(255, 122, 122, 122))),
+                          onPressed: () {
+                            txt.text = exampleInput;
+                          },
+                          child: const Text(
+                            'Try Example',
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 16, 5, 12),
-                    child: ElevatedButton(
-                      //submit button
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              Color.fromARGB(255, 228, 57, 57))),
-                      onPressed: () {
-                        txt.text = '';
-                      },
-                      child: const Text(
-                        'Clear Text',
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 16, 5, 12),
+                        child: ElevatedButton(
+                          //submit button
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Color.fromARGB(255, 228, 57, 57))),
+                          onPressed: () {
+                            txt.text = '';
+                          },
+                          child: const Text(
+                            'Clear Text',
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ])));
   }
