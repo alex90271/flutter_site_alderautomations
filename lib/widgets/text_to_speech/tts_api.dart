@@ -15,11 +15,11 @@ class AudioResponse {
 }
 
 class TextToSpeechService {
-  String _apiKey;
+  final String _apiKey;
 
   TextToSpeechService([this._apiKey = '']);
 
-  _formatMP3(AudioResponse response) {
+  _formatAudio(AudioResponse response) {
     return base64.decode(response.audioContent);
     //return FileService.createAndWriteFile('out.mp3', bytes);
   }
@@ -59,7 +59,7 @@ class TextToSpeechService {
     try {
       var response = await _getResponse(request);
       AudioResponse audioResponse = AudioResponse.fromJson(response);
-      return _formatMP3(audioResponse);
+      return _formatAudio(audioResponse);
     } catch (e) {
       rethrow;
     }
