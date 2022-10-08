@@ -1,15 +1,17 @@
 import 'dart:developer';
 import 'dart:html' as html;
 import 'package:alderautomationsdotcom/globals.dart';
+import 'package:alderautomationsdotcom/widgets/alert_dialog/alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'tts_api.dart';
 import 'package:intl/intl.dart';
 
 final now = DateTime.now();
+const inputFormTextStyle = TextStyle(color: brandBlack, fontFamily: 'Roboto');
 const exampleInput =
     "Here are <say-as interpret-as=\"characters\">SSML</say-as> samples.\nI can pause <break time=\"3s\"/>.\nI can play a sound\n<audio src=\"https://rpg.hamsterrepublic.com/wiki-images/d/db/Crush8-Bit.ogg\">didn't get your MP3 audio file</audio>.\nI can speak in cardinals. Your number is <say-as interpret-as=\"cardinal\">10</say-as>.\nOr I can speak in ordinals. You are <say-as interpret-as=\"ordinal\">10</say-as> in line.\nOr I can even speak in digits. The digits for ten are <say-as interpret-as=\"characters\">10</say-as>.\nI can also substitute phrases, like the <sub alias=\"World Wide Web Consortium\">W3C</sub>.\nFinally, I can speak a paragraph with two sentences.\n<p><s>This is sentence one.</s><s>This is sentence two.</s></p>";
 
-api(text, voiceName, languageCode, fileName) {
+api(text, voiceName, languageCode, fileName, context) {
   TextToSpeechService service = TextToSpeechService();
 
   Future mp3 = Future(() => service.textToSpeech(
@@ -37,6 +39,37 @@ api(text, voiceName, languageCode, fileName) {
 
     return file;
   });
+  mp3.catchError((error) => showDialog(
+      context: context,
+      builder: (BuildContext cxt) {
+        return const ShowInvalidAlert(
+          invalidHeader: "Error",
+          invalidBody:
+              "There was an error with your request\nplease try again later\nor email us at alex@alderautomations.com",
+        );
+      }));
+}
+
+appendText(String text, TextEditingController txt) {
+  var cursorPos = txt.selection.base.offset;
+
+  // Right text of cursor position
+  String suffixText = txt.text.substring(cursorPos);
+
+  // Add new text on cursor position
+  String specialChars = text;
+  int length = specialChars.length;
+
+  // Get the left text of cursor
+  String prefixText = txt.text.substring(0, cursorPos);
+
+  txt.text = prefixText + specialChars + suffixText;
+
+  // Cursor move to end of added text
+  txt.selection = TextSelection(
+    baseOffset: cursorPos + length,
+    extentOffset: cursorPos + length,
+  );
 }
 
 class TextToSpeech extends StatelessWidget {
@@ -66,8 +99,6 @@ class _TextInputState extends State<TextInput> {
   final _formKey = GlobalKey<FormState>();
   String text = '', _fileName = '';
   TextEditingController txt = TextEditingController();
-  final inputFormTextStyle =
-      const TextStyle(color: brandBlack, fontFamily: 'Roboto');
 
   @override
   Widget build(BuildContext context) {
@@ -146,25 +177,7 @@ class _TextInputState extends State<TextInput> {
                           backgroundColor:
                               MaterialStateProperty.all<Color>(brandBlack)),
                       onPressed: () {
-                        var cursorPos = txt.selection.base.offset;
-
-                        // Right text of cursor position
-                        String suffixText = txt.text.substring(cursorPos);
-
-                        // Add new text on cursor position
-                        String specialChars = "<break time=\"1s\"/>";
-                        int length = specialChars.length;
-
-                        // Get the left text of cursor
-                        String prefixText = txt.text.substring(0, cursorPos);
-
-                        txt.text = prefixText + specialChars + suffixText;
-
-                        // Cursor move to end of added text
-                        txt.selection = TextSelection(
-                          baseOffset: cursorPos + length,
-                          extentOffset: cursorPos + length,
-                        );
+                        appendText("<break time=\"1s\"/>", txt);
                       },
                       child: const Text(
                         'Add one second pause',
@@ -180,7 +193,7 @@ class _TextInputState extends State<TextInput> {
                           backgroundColor:
                               MaterialStateProperty.all<Color>(brandBlack)),
                       onPressed: () {
-                        txt.text = txt.text + "<break time=\"2s\"/>";
+                        appendText("<break time=\"2s\"/>", txt);
                       },
                       child: const Text(
                         'Add two second pause',
@@ -220,7 +233,8 @@ class _TextInputState extends State<TextInput> {
                               text,
                               'en-US-Wavenet-D', //voice
                               'en-US',
-                              _fileName //language
+                              _fileName,
+                              context //language
                               );
                           _formKey.currentState!.reset();
                         }
