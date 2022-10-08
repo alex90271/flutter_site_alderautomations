@@ -62,23 +62,11 @@ api(text, voiceName, languageCode, fileName, context) {
 appendText(String text, TextEditingController txt) {
   var cursorPos = txt.selection.base.offset;
 
-  // Right text of cursor position
-  String suffixText = txt.text.substring(cursorPos);
+  String suffix = txt.text.substring(cursorPos);
+  String append = text;
+  String prefix = txt.text.substring(0, cursorPos);
 
-  // Add new text on cursor position
-  String specialChars = text;
-  int length = specialChars.length;
-
-  // Get the left text of cursor
-  String prefixText = txt.text.substring(0, cursorPos);
-
-  txt.text = prefixText + specialChars + suffixText;
-
-  // Cursor move to end of added text
-  txt.selection = TextSelection(
-    baseOffset: cursorPos + length,
-    extentOffset: cursorPos + length,
-  );
+  txt.text = prefix + append + suffix;
 }
 
 class TextToSpeech extends StatelessWidget {
@@ -112,74 +100,61 @@ class _TextInputState extends State<TextInput> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            TextFormField(
-              minLines: 1,
-              maxLines: 25,
-              controller: txt,
-              style: inputFormTextStyle,
-              validator: (value) {
-                if (value!.isNotEmpty) {
-                  return null;
-                } else {
-                  return value;
-                }
-              },
-              onSaved: (value) {
-                text = value!;
-              },
-              decoration: const InputDecoration(
-                contentPadding: EdgeInsets.fromLTRB(0, 16, 0, 12),
-                focusColor: brandBlack,
-                counterStyle: TextStyle(
-                  color: brandBlack,
-                ),
-                labelText: 'Enter Desired Text',
-                labelStyle: TextStyle(color: brandBlack, fontFamily: 'Lovelo'),
-                fillColor: brandBlack,
-                hoverColor: brandBlack,
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: brandBlack),
-                ),
-              ),
-            ),
-            TextFormField(
-              style: inputFormTextStyle,
-              validator: (value) {
-                if (value!.isNotEmpty) {
-                  return null;
-                } else {
-                  return value;
-                }
-              },
-              onSaved: (value) {
-                _fileName = value!;
-              },
-              decoration: const InputDecoration(
-                contentPadding: EdgeInsets.fromLTRB(0, 16, 0, 12),
-                focusColor: brandBlack,
-                counterStyle: TextStyle(
-                  color: brandBlack,
-                ),
-                labelText: 'Enter File Name',
-                labelStyle: TextStyle(color: brandBlack, fontFamily: 'Lovelo'),
-                fillColor: brandBlack,
-                hoverColor: brandBlack,
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: brandBlack),
+        padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+        child: Form(
+            key: _formKey,
+            child: Column(children: [
+              TextFormField(
+                minLines: 1,
+                maxLines: 25,
+                controller: txt,
+                style: inputFormTextStyle,
+                validator: (value) {
+                  if (value!.isNotEmpty) {
+                    return null;
+                  } else {
+                    return value;
+                  }
+                },
+                onSaved: (value) {
+                  text = value!;
+                },
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.fromLTRB(0, 16, 0, 12),
+                  focusColor: brandBlack,
+                  counterStyle: TextStyle(
+                    color: brandBlack,
+                  ),
+                  labelText: 'Enter Desired Text',
+                  labelStyle:
+                      TextStyle(color: brandBlack, fontFamily: 'Lovelo'),
+                  fillColor: brandBlack,
+                  hoverColor: brandBlack,
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: brandBlack),
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
+              Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.fromLTRB(0, 16, 5, 12),
+                    child: ElevatedButton(
+                      //submit button
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(brandBlack)),
+                      onPressed: () {
+                        appendText("<break time=\"200ms\"/>", txt);
+                      },
+                      child: const Text(
+                        'Add 200 millisecond pause',
+                        style: TextStyle(color: brandWhite),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 16, 5, 12),
                     child: ElevatedButton(
                       //submit button
                       style: ButtonStyle(
@@ -189,45 +164,45 @@ class _TextInputState extends State<TextInput> {
                         appendText("<break time=\"1s\"/>", txt);
                       },
                       child: const Text(
-                        'Add one second pause',
+                        'Add 1 second pause',
                         style: TextStyle(color: brandWhite),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                      //submit button
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(brandBlack)),
-                      onPressed: () {
-                        appendText("<break time=\"2s\"/>", txt);
-                      },
-                      child: const Text(
-                        'Add two second pause',
-                        style: TextStyle(color: brandWhite),
-                      ),
-                    ),
+                ],
+              ),
+              TextFormField(
+                style: inputFormTextStyle,
+                validator: (value) {
+                  if (value!.isNotEmpty) {
+                    return null;
+                  } else {
+                    return value;
+                  }
+                },
+                onSaved: (value) {
+                  _fileName = value!;
+                },
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.fromLTRB(0, 16, 0, 12),
+                  focusColor: brandBlack,
+                  counterStyle: TextStyle(
+                    color: brandBlack,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                      //submit button
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.grey)),
-                      onPressed: () {
-                        txt.text = exampleInput;
-                      },
-                      child: const Text(
-                        'Try Example',
-                        style: TextStyle(color: brandWhite),
-                      ),
-                    ),
+                  labelText: 'Enter File Name',
+                  labelStyle:
+                      TextStyle(color: brandBlack, fontFamily: 'Lovelo'),
+                  fillColor: brandBlack,
+                  hoverColor: brandBlack,
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: brandBlack),
                   ),
+                ),
+              ),
+              Row(
+                children: [
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.fromLTRB(0, 16, 5, 12),
                     child: ElevatedButton(
                       //submit button
                       style: ButtonStyle(
@@ -254,13 +229,39 @@ class _TextInputState extends State<TextInput> {
                       ),
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 16, 5, 12),
+                    child: ElevatedButton(
+                      //submit button
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Color.fromARGB(255, 122, 122, 122))),
+                      onPressed: () {
+                        txt.text = exampleInput;
+                      },
+                      child: const Text(
+                        'Try Example',
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 16, 5, 12),
+                    child: ElevatedButton(
+                      //submit button
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Color.fromARGB(255, 228, 57, 57))),
+                      onPressed: () {
+                        txt.text = '';
+                      },
+                      child: const Text(
+                        'Clear Text',
+                      ),
+                    ),
+                  ),
                 ],
               ),
-            ),
-          ],
-        ),
-      ),
-    );
+            ])));
   }
 }
 
