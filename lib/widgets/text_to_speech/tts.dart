@@ -68,28 +68,31 @@ class _TextInputState extends State<TextInput> {
   TextEditingController txt = TextEditingController();
   final inputFormTextStyle =
       const TextStyle(color: brandBlack, fontFamily: 'Roboto');
+
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: [
-          TextFormField(
-            minLines: 1,
-            maxLines: 25,
-            controller: txt,
-            style: inputFormTextStyle,
-            validator: (value) {
-              if (value!.isNotEmpty) {
-                return null;
-              } else {
-                return value;
-              }
-            },
-            onSaved: (value) {
-              text = value!;
-            },
-            decoration: const InputDecoration(
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            TextFormField(
+              minLines: 1,
+              maxLines: 25,
+              controller: txt,
+              style: inputFormTextStyle,
+              validator: (value) {
+                if (value!.isNotEmpty) {
+                  return null;
+                } else {
+                  return value;
+                }
+              },
+              onSaved: (value) {
+                text = value!;
+              },
+              decoration: const InputDecoration(
                 contentPadding: EdgeInsets.fromLTRB(0, 16, 0, 12),
                 focusColor: brandBlack,
                 counterStyle: TextStyle(
@@ -102,21 +105,21 @@ class _TextInputState extends State<TextInput> {
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: brandBlack),
                 ),
-                constraints: BoxConstraints(maxWidth: 350, maxHeight: 100)),
-          ),
-          TextFormField(
-            style: inputFormTextStyle,
-            validator: (value) {
-              if (value!.isNotEmpty) {
-                return null;
-              } else {
-                return value;
-              }
-            },
-            onSaved: (value) {
-              _fileName = value!;
-            },
-            decoration: const InputDecoration(
+              ),
+            ),
+            TextFormField(
+              style: inputFormTextStyle,
+              validator: (value) {
+                if (value!.isNotEmpty) {
+                  return null;
+                } else {
+                  return value;
+                }
+              },
+              onSaved: (value) {
+                _fileName = value!;
+              },
+              decoration: const InputDecoration(
                 contentPadding: EdgeInsets.fromLTRB(0, 16, 0, 12),
                 focusColor: brandBlack,
                 counterStyle: TextStyle(
@@ -129,91 +132,110 @@ class _TextInputState extends State<TextInput> {
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: brandBlack),
                 ),
-                constraints: BoxConstraints(maxWidth: 350, maxHeight: 100)),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    //submit button
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(brandBlack)),
-                    onPressed: () {
-                      txt.text = txt.text + "<break time=\"1s\"/>";
-                    },
-                    child: const Text(
-                      'Add one second pause',
-                      style: TextStyle(color: brandWhite),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    //submit button
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(brandBlack)),
-                    onPressed: () {
-                      txt.text = txt.text + "<break time=\"2s\"/>";
-                    },
-                    child: const Text(
-                      'Add two second pause',
-                      style: TextStyle(color: brandWhite),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    //submit button
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.grey)),
-                    onPressed: () {
-                      txt.text = exampleInput;
-                    },
-                    child: const Text(
-                      'Try Example',
-                      style: TextStyle(color: brandWhite),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    //submit button
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(brandBlue)),
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        _formKey.currentState!.save();
-                        log('valid inputs - saving and resetting state');
-                        text = text.replaceAll('"', '\\"');
-                        api(
-                            text,
-                            'en-US-Wavenet-D', //voice
-                            'en-US',
-                            _fileName //language
-                            );
-                        _formKey.currentState!.reset();
-                      }
-                    },
-                    child: const Text(
-                      'Process and Download MP3',
-                      style: TextStyle(color: brandWhite),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      //submit button
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(brandBlack)),
+                      onPressed: () {
+                        var cursorPos = txt.selection.base.offset;
+
+                        // Right text of cursor position
+                        String suffixText = txt.text.substring(cursorPos);
+
+                        // Add new text on cursor position
+                        String specialChars = "<break time=\"1s\"/>";
+                        int length = specialChars.length;
+
+                        // Get the left text of cursor
+                        String prefixText = txt.text.substring(0, cursorPos);
+
+                        txt.text = prefixText + specialChars + suffixText;
+
+                        // Cursor move to end of added text
+                        txt.selection = TextSelection(
+                          baseOffset: cursorPos + length,
+                          extentOffset: cursorPos + length,
+                        );
+                      },
+                      child: const Text(
+                        'Add one second pause',
+                        style: TextStyle(color: brandWhite),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      //submit button
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(brandBlack)),
+                      onPressed: () {
+                        txt.text = txt.text + "<break time=\"2s\"/>";
+                      },
+                      child: const Text(
+                        'Add two second pause',
+                        style: TextStyle(color: brandWhite),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      //submit button
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.grey)),
+                      onPressed: () {
+                        txt.text = exampleInput;
+                      },
+                      child: const Text(
+                        'Try Example',
+                        style: TextStyle(color: brandWhite),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      //submit button
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(brandBlue)),
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
+                          log('valid inputs - saving and resetting state');
+                          text = text.replaceAll('"', '\\"');
+                          api(
+                              text,
+                              'en-US-Wavenet-D', //voice
+                              'en-US',
+                              _fileName //language
+                              );
+                          _formKey.currentState!.reset();
+                        }
+                      },
+                      child: const Text(
+                        'Process and Download MP3',
+                        style: TextStyle(color: brandWhite),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
