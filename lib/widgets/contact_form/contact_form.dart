@@ -167,9 +167,9 @@ class _TextContactFormState extends State<TextContactForm> {
                       .catchError((error) => showDialog(
                           context: context,
                           builder: (BuildContext cxt) {
-                            return const ShowValidAlert(
-                              validHeader: "Error",
-                              validBody:
+                            return const ShowInvalidAlert(
+                              invalidHeader: "Error",
+                              invalidBody:
                                   "There was an error with your request\nplease try again later\nor email us at alex@alderautomations.com",
                             );
                           }));
