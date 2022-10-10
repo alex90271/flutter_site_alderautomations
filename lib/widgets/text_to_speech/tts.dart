@@ -234,7 +234,7 @@ class _TextInputState extends State<TextInput> {
                             }
                           },
                           child: const Text(
-                            'Process and Download MP3',
+                            'Process',
                             style: TextStyle(color: brandWhite),
                           ),
                         ),

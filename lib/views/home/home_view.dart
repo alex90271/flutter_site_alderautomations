@@ -43,7 +43,7 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavigationDrawer(pgcntrl: widget._controller),
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: Stack(
         clipBehavior: Clip.none,
         fit: StackFit.loose,
