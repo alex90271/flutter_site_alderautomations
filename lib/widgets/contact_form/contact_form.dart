@@ -131,17 +131,9 @@ class _TextContactFormState extends State<TextContactForm> {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
-                  log('valid inputs - saving and resetting state');
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext cxt) {
-                        return const ShowLoadingAlert(
-                          loadingBody: '',
-                          loadingHeader: 'Saving results',
-                        );
-                      });
-                  _formKey.currentState!.reset();
-                  FirebaseFirestore.instance
+                  print(
+                      "First: $fName\nLast: $lName\nPhone: $phone\nBuisness Name: $buisnessName\nSubmitted: $now");
+                  firestore
                       .collection("mail")
                       .add({
                         "firstname": fName,
@@ -173,6 +165,7 @@ class _TextContactFormState extends State<TextContactForm> {
                                   "There was an error with your request\nplease try again later\nor email us at alex@alderautomations.com",
                             );
                           }));
+                  _formKey.currentState!.reset();
                   Navigator.pop(context);
                 } else {
                   log('invalid inputs');

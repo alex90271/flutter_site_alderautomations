@@ -1,8 +1,5 @@
 import 'package:alderautomationsdotcom/globals.dart';
-import 'package:alderautomationsdotcom/views/text_to_speech/tts_view.dart';
-import 'package:alderautomationsdotcom/views/text_to_speech/tts_view.dart';
 import 'package:alderautomationsdotcom/views/home/home_view.dart';
-import 'package:alderautomationsdotcom/widgets/text_to_speech/tts.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -27,7 +24,6 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => HomeContentDesktop(),
           // ignore: prefer_const_constructors
-          '/textToSpeechEngine': (context) => TextToSpeechView(),
         });
   }
 }
