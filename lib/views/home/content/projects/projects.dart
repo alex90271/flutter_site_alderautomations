@@ -67,7 +67,7 @@ class _ProjectsViewState extends State<ProjectsView>
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 125),
                   child: Scrollbar(
                     scrollbarOrientation: ScrollbarOrientation.right,
-                    isAlwaysShown: true,
+                    thumbVisibility: true,
                     child: ListView.builder(
                         itemCount: _itemCount,
                         itemBuilder: (context, index) {

@@ -1,5 +1,4 @@
 import 'package:alderautomationsdotcom/globals.dart';
-import 'package:alderautomationsdotcom/widgets/contact_form/contact_form.dart';
 import 'package:flutter/material.dart';
 
 class ContactView extends StatelessWidget {
@@ -7,7 +6,6 @@ class ContactView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var keyboardSize = MediaQuery.of(context).viewInsets.bottom;
     return Scaffold(
       backgroundColor: brandBlue,
       body: Center(

@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'package:alderautomationsdotcom/globals.dart';
 import 'package:alderautomationsdotcom/widgets/footer/footer.dart';
 import 'package:alderautomationsdotcom/widgets/navigation/navigation_drawer/navigation_drawer.dart';
 import 'package:flutter/gestures.dart';
