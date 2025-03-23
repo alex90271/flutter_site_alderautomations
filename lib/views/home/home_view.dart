@@ -1,4 +1,6 @@
-import 'dart:developer';
+// Import the navigation drawer as MyNavigationDrawer to avoid name conflicts
+import 'package:alderautomationsdotcom/widgets/navigation/navigation_drawer/navigation_drawer.dart'
+    as my_drawer;
 import 'package:alderautomationsdotcom/widgets/footer/footer.dart';
 import 'package:alderautomationsdotcom/widgets/navigation/navigation_drawer/navigation_drawer.dart';
 import 'package:flutter/gestures.dart';
@@ -41,7 +43,7 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavigationDrawer(pgcntrl: widget._controller),
+      drawer: my_drawer.NavigationDrawer(pgcntrl: widget._controller),
       resizeToAvoidBottomInset: true,
       body: Stack(
         clipBehavior: Clip.none,
@@ -61,7 +63,7 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
               onPageChanged: (x) {
                 setState(() {
                   widget._page = x;
-                  log('visiting page ' + widget._page.toString());
+                  print('visiting page ' + widget._page.toString());
                 });
               }),
           Stack(
