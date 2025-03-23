@@ -27,7 +27,8 @@ class NavBarPage extends StatelessWidget {
           onPressed: () {
             pgcntrl.jumpToPage(page);
           },
-          child: Text(title, style: TextStyle(fontSize: size.height / 90)),
+          child: Text(title,
+              style: TextStyle(fontSize: size.height / 90, color: brandWhite)),
         ),
       ),
     );
@@ -55,7 +56,8 @@ class NavBarLink extends StatelessWidget {
           style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all<Color>(brandBlue)),
           onPressed: _launchURL,
-          child: Text(title, style: TextStyle(fontSize: size.height / 90)),
+          child: Text(title,
+              style: TextStyle(fontSize: size.height / 90, color: brandWhite)),
         ),
       ),
     );
