@@ -13,10 +13,10 @@ class Footer extends StatelessWidget {
           alignment: Alignment.centerRight,
           height: size.height * 0.055,
           color: brandBlack,
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
+          child: const Padding(
+            padding: EdgeInsets.fromLTRB(16, 8, 8, 8),
             child: Row(
-              children: const [
+              children: [
                 Icon(
                   Icons.copyright_outlined,
                   color: brandWhite,

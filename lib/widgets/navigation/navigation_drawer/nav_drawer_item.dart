@@ -40,14 +40,14 @@ class NavDrawerPage extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: TextButton(
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(brandBlue),
-            foregroundColor: MaterialStateProperty.all<Color>(brandWhite),
-            minimumSize: MaterialStateProperty.all(const Size.fromHeight(45))),
+            backgroundColor: WidgetStateProperty.all<Color>(brandBlue),
+            foregroundColor: WidgetStateProperty.all<Color>(brandWhite),
+            minimumSize: WidgetStateProperty.all(const Size.fromHeight(45))),
         onPressed: () {
           pgcntrl.jumpToPage(page);
           Navigator.pop(context);
         },
-        child: Text(title, style: TextStyle(fontSize: 16)),
+        child: Text(title, style: const TextStyle(fontSize: 16)),
       ),
     );
   }
@@ -69,13 +69,13 @@ class NavDrawerLink extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: TextButton(
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(brandBlue),
-            foregroundColor: MaterialStateProperty.all<Color>(brandWhite),
-            minimumSize: MaterialStateProperty.all(const Size.fromHeight(45))),
+            backgroundColor: WidgetStateProperty.all<Color>(brandBlue),
+            foregroundColor: WidgetStateProperty.all<Color>(brandWhite),
+            minimumSize: WidgetStateProperty.all(const Size.fromHeight(45))),
         onPressed: () {
           _launchURL();
         },
-        child: Text(title, style: TextStyle(fontSize: 16)),
+        child: Text(title, style: const TextStyle(fontSize: 16)),
       ),
     );
   }

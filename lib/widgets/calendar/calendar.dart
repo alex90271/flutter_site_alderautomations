@@ -19,7 +19,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
     return ElevatedButton(
         child: const Text('Show Calendar'),
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(brandBlue)),
+            backgroundColor: WidgetStateProperty.all<Color>(brandBlue)),
         onPressed: () {
           showModalBottomSheet(
               context: context,

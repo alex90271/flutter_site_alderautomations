@@ -25,7 +25,7 @@ class CallToAction extends StatelessWidget {
           page: page_one,
           pgcntrl: pgcntrl,
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         CallToActionButton(

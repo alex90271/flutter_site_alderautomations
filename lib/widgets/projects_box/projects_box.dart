@@ -53,7 +53,7 @@ class ProjectsInfoBox extends StatelessWidget {
                   child: ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all<Color>(brandBlue)),
+                              WidgetStateProperty.all<Color>(brandBlue)),
                       onPressed: onPressed,
                       child: const Text('View on Github',
                           style: TextStyle(color: brandWhite))),

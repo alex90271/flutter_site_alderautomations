@@ -23,7 +23,7 @@ class NavBarPage extends StatelessWidget {
             maxWidth: size.width * 0.15, minWidth: size.width * 0.10),
         child: ElevatedButton(
           style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(brandBlue)),
+              backgroundColor: WidgetStateProperty.all<Color>(brandBlue)),
           onPressed: () {
             pgcntrl.jumpToPage(page);
           },
@@ -53,7 +53,7 @@ class NavBarLink extends StatelessWidget {
             maxWidth: size.width * 0.15, minWidth: size.width * 0.10),
         child: ElevatedButton(
           style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(brandBlue)),
+              backgroundColor: WidgetStateProperty.all<Color>(brandBlue)),
           onPressed: _launchURL,
           child: Text(title, style: TextStyle(fontSize: size.height / 90)),
         ),

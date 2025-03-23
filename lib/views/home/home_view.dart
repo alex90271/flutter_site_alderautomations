@@ -2,7 +2,6 @@
 import 'package:alderautomationsdotcom/widgets/navigation/navigation_drawer/navigation_drawer.dart'
     as my_drawer;
 import 'package:alderautomationsdotcom/widgets/footer/footer.dart';
-import 'package:alderautomationsdotcom/widgets/navigation/navigation_drawer/navigation_drawer.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/navigation/navigation.dart';

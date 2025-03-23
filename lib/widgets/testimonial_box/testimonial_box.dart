@@ -46,7 +46,7 @@ class TestimonialCard extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return ConstrainedBox(
-      constraints: BoxConstraints(maxWidth: 600),
+      constraints: const BoxConstraints(maxWidth: 600),
       child: SizedBox(
         width: size.width,
         height: size.height * 0.75,
@@ -72,7 +72,7 @@ class TestimonialCard extends StatelessWidget {
                 Expanded(
                   child: Text(
                     desc,
-                    style: TextStyle(height: 1.5),
+                    style: const TextStyle(height: 1.5),
                   ),
                 ),
                 Image.asset(
