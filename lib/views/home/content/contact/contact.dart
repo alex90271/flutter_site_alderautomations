@@ -21,8 +21,7 @@ class ContactView extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
-              child: Text(
-                  'email: alex@alderautomations.com \n\nsms: 801-910-1836',
+              child: Text('email: alex@alexalder.dev',
                   style: TextStyle(color: brandWhite)),
             ),
           ],
