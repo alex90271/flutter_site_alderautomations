@@ -7,23 +7,24 @@ class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    final currentYear = DateTime.now().year;
     return Align(
       alignment: FractionalOffset.bottomCenter,
       child: Container(
           alignment: Alignment.centerRight,
           height: size.height * 0.055,
           color: brandBlack,
-          child: const Padding(
-            padding: EdgeInsets.fromLTRB(16, 8, 8, 8),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
             child: Row(
               children: [
-                Icon(
+                const Icon(
                   Icons.copyright_outlined,
                   color: brandWhite,
                 ),
                 Text(
-                  'Copyright Alder Automations 2022',
-                  style: TextStyle(color: brandWhite),
+                  'Copyright Alder Automations $currentYear',
+                  style: const TextStyle(color: brandWhite),
                 ),
               ],
             ),
