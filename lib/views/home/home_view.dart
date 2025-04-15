@@ -10,6 +10,7 @@ import 'content/main_view/main_view.dart';
 import 'content/contact/contact.dart';
 import 'content/projects/projects.dart';
 import 'content/testimonial/testimonial.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeContentDesktop extends StatefulWidget {
   HomeContentDesktop({
@@ -37,6 +38,44 @@ class _HomeContentDesktopState extends State<HomeContentDesktop> {
   @override
   void initState() {
     super.initState();
+
+    // Show the deprecation popup after the widget is built
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _showDeprecationDialog();
+    });
+  }
+
+  // Function to launch URL
+  Future<void> _launchUrl(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
+  // Function to show the deprecation dialog
+  void _showDeprecationDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false, // User must tap a button to dismiss
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Site Deprecated'),
+          content: const Text(
+            'This website is deprecated and no longer maintained. '
+            'Please visit the new website for up-to-date information and services.',
+          ),
+          actions: <Widget>[
+            ElevatedButton(
+              onPressed: () {
+                _launchUrl('https://alexalder.dev');
+              },
+              child: const Text('Visit alexalder.dev'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
